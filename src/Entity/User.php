@@ -55,6 +55,11 @@ class User implements UserInterface
      */
     private $knightedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\County", inversedBy="users")
+     */
+    private $county;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -177,6 +182,18 @@ class User implements UserInterface
     public function setKnightedAt(\DateTimeInterface $knightedAt): self
     {
         $this->knightedAt = $knightedAt;
+
+        return $this;
+    }
+
+    public function getCounty(): ?County
+    {
+        return $this->county;
+    }
+
+    public function setCounty(?County $county): self
+    {
+        $this->county = $county;
 
         return $this;
     }
