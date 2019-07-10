@@ -9,6 +9,29 @@
 require('../scss/app.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
+const $ = require('jquery');
+require('bootstrap');
+require('@fortawesome/fontawesome-free/css/all.min.css');
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+$(document).ready(function() {
+    $('[data-toggle="popover"]').popover();
+});
+
+
+// jquery for change navbar color on scroll
+
+function checkScroll() {
+    var startY = $('.navbar').height(); //The point where the navbar changes in px
+
+    if ($(window).scrollTop() > startY) {
+        $('.navbar').addClass("bg-custom");
+    } else {
+        $('.navbar').removeClass("bg-custom");
+    }
+}
+
+if ($('.navbar').length > 0) {
+    $(window).on("scroll load resize", function () {
+        checkScroll();
+    });
+}

@@ -1,1 +1,65 @@
 @import "~bootstrap/scss/bootstrap";
+@import "vars";
+@import "index";
+
+/* ------ STYLE NAVBAR ----------- */
+
+
+.navbar {
+  -webkit-transition: all 0.6s ease-out;
+  -moz-transition: all 0.6s ease-out;
+  -o-transition: all 0.6s ease-out;
+  -ms-transition: all 0.6s ease-out;
+  transition: all 0.6s ease-out;
+  height: 100px;
+
+  .navbar-brand {
+    height: $navbar-height;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2rem;
+  }
+}
+
+.navbar-transparent {
+  background-color: $navbar-text-color;
+
+  a:hover {
+    background-color: unset;
+  }
+}
+
+.bg-custom {
+  background-color: $secondary-color;
+
+  a {
+    color: black;
+
+    &:hover {
+      color: $primary-color;
+      border: none;
+    }
+  }
+}
+
+
+.logo-navbar {
+  height: auto;
+  width: 100px;
+  position: absolute;
+  top: 35px;
+  left: 18px;
+}
+
+.nav-link {
+  font-size: 1.8rem;
+}
+
+/* ------ END STYLE NAVBAR -------- */
+
+@font-face {
+  font-family: "Kingdom";
+  src: url('../fonts/Olondon.otf') format("opentype");
+}

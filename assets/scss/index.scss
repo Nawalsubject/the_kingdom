@@ -5,6 +5,44 @@
     background-image: url("../images/image_header.jpg");
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: color;
-    padding-top: 100vh;
+    height: 100vh;
+    margin-bottom: unset;
+
+    h1 {
+      font-family: $font-main-title;
+      font-size: calc(50px + (200 - 50) * ((100vw - 300px) / (1600 - 300)));
+      color: $title-text-color;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      margin: auto;
+      white-space: nowrap;
+    }
+
+    .img-left{
+      position: absolute;
+      left: 18%;
+      top: 40%;
+      transform: translate(-50%, -50%) rotate(20deg);
+    }
+
+    .img-right{
+      position: absolute;
+      left: 80%;
+      top: 54%;
+      transform: translate(-50%, -50%);
+    }
+
+    .img-header-left{
+      background: url("../images/image_header_left.png");
+      width: 400px;
+      height: 288px;
+    }
+    .img-header-right{
+      background: url("../images/image_header_right.png");
+      width: 229px;
+      height: 130px;
+    }
   }
 }
