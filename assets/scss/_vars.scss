@@ -2,6 +2,7 @@
 
 $primary-color : #0D0D0D;
 $secondary-color : #BF0F0F;
+$section-color-light : #f2e0c8;
 $navbar-text-color : rgba(0, 0, 0, 0.5);
 
 $primary-text-color : white;
@@ -10,9 +11,20 @@ $title-text-color : #E1DCBD;
 /* --- FONTS --- */
 
 $font-main-title : 'Kingdom' , sans-serif;
+$font-text: 'Lato', sans-serif;
 
 $font-title: 'Montserrat', sans-serif;
 
 /* --- OTHERS --- */
 
 $navbar-height : 100px;
+
+/* --- MIXINS --- */
+
+@mixin card-form($width, $max-width) {
+  width: $width;
+  max-width: $max-width;
+  border: unset;
+  border-radius: unset;
+  box-shadow: 0 3px 5px -1px rgba($primary-color, 0.08), 0 5px 8px 0 rgba($primary-color, 0.12), 0 1px 14px 0 rgba($primary-color, 0.06);
+}

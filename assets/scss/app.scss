@@ -1,9 +1,39 @@
 @import "~bootstrap/scss/bootstrap";
 @import "vars";
 @import "index";
+@import "security";
 
 /* ------ STYLE NAVBAR ----------- */
 
+
+body {
+  font-family: $font-text;
+}
+
+h1 {
+  color: $primary-text-color;
+  font-family: $font-main-title;
+  font-size: calc(50px + (100 - 50) * ((100vw - 300px) / (1600 - 300)));
+
+}
+
+h2 {
+  font-family: $font-title;
+  font-size: calc(35px + (60 - 35) * ((100vw - 300px) / (1600 - 300)));
+  color: $primary-text-color;
+}
+
+h3 {
+  font-family: $font-title;
+  font-size: calc(16px + (38 - 16) * ((100vw - 300px) / (1600 - 300)));
+  font-weight: 700;
+  color: $primary-text-color;
+}
+
+h4 {
+  font-family: $font-title;
+  color: $primary-text-color;
+}
 
 .navbar {
   -webkit-transition: all 0.6s ease-out;

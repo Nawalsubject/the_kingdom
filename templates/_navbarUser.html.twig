@@ -10,7 +10,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarKingdom">
         <div class="navbar-nav py-0 ml-auto text-right">
-            <a class="nav-item nav-link mx-2 active" href="">SE CONNECTER</a>
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_login'%} active {% endif %}" href="{{ path('app_login') }}">SE CONNECTER</a>
             <span>|</span>
             <a class="nav-item nav-link mx-2" href="">S'INSCRIRE</a>
         </div>
