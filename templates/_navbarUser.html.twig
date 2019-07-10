@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-transparent fixed-top" id="navbar">
+    <a href="">
+        <img class="logo-navbar"
+             src="{{ asset('build/logo_royaume.png') }}" width="30" height="30"
+             alt="logo de la ferme de la voliere">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav py-0 ml-auto text-right">
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == ''%} active {% endif %}" href="">SE CONNECTER /</a>
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == ''%} active {% endif %}" href="">S'INSCRIRE</a>
+        </div>
+    </div>
+</nav>

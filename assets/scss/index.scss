@@ -1,0 +1,10 @@
+.home-index{
+  .jumbotron {
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url("../images/image_header.jpg");
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: color;
+    padding-top: 100vh;
+  }
+}
