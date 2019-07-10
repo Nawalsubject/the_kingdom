@@ -1,13 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'userLayout.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription {{ parent() }}{% endblock %}
 
 {% block body %}
+
+{#    <section class="register">
+        <div class="container my-3">
+
+            <h1 class="text-center my-4">Inscription</h1>
+
+            <div class="card mx-auto">
+                {{ form_start(registrationForm) }}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            {{ form_label(registrationForm.firstname) }}
+                            {{ form_widget(registrationForm.firstname) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ form_label(registrationForm.lastname) }}
+                            {{ form_widget(registrationForm.lastname) }}
+                        </div>
+                    </div>
+                    {{ form_label(registrationForm.phone) }}
+                    {{ form_widget(registrationForm.phone) }}
+                    {{ form_label(registrationForm.email) }}
+                    {{ form_widget(registrationForm.email) }}
+                    {{ form_label(registrationForm.plainPassword.first) }}
+                    {{ form_widget(registrationForm.plainPassword.first) }}
+                    {{ form_label(registrationForm.plainPassword.second) }}
+                    {{ form_widget(registrationForm.plainPassword.second) }}
+                </div>
+                <p class="ml-4"><span class="required"></span>Champs obligatoires </p>
+
+                <div class="row justify-content-center">
+                    <button class="btn btn-form col-10 col-md-4 mb-3">S'inscrire</button>
+                </div>
+                {{ form_end(registrationForm) }}
+            </div>
+
+        </div>
+    </section>#}
+
+
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_widget(registrationForm) }}
 
         <button class="btn">Register</button>
     {{ form_end(registrationForm) }}
