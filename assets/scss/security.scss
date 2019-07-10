@@ -1,31 +1,47 @@
 .log-in {
 
+  .bg-section {
+    background-color: $section-color-light;
+    padding-bottom: 7vh;
+  }
+
+  h1 {
+    color: $primary-color;
+  }
+
   .jumbotron {
-    z-index: -1;
+    z-index: -10;
     background-size: contain;
     background-attachment: fixed;
-    filter: sepia(80%);
     background-image: url('../images/image_header_login.jpg');
     background-color: rgba(0, 0, 0, 0.3);
     background-blend-mode: color;
-    padding-top: 30vh;
-    padding-bottom: 6%;
+    height: 45vh;
     margin-bottom: 0;
     @media screen and (min-width: 200px) and (max-width: 900px) {
       background-size: contain;
-      padding-top: 50vh;
       background-image: url('../images/image_header_login_mobile.jpg');
     }
   }
 
-  .bg-section-limit{
+  .bg-section-limit {
     background-image: url("../images/image_banner_upper.png");
     margin-top: -65px;
-    z-index: 1000;
+    z-index: 10;
     height: 95px;
   }
 
-  .container{
-    background-color: $section-color-light;
+  a {
+    color: $subtitle-text-color;
+    margin: 0;
+  }
+
+  .card {
+    @include card-form(30rem, 90%);
+
+    .btn-form {
+      background-color: $section-color-dark;
+    }
+
   }
 }

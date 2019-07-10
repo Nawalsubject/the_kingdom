@@ -13,38 +13,47 @@
         </div>
 
         <div class="bg-section-limit"></div>
+        <div class="bg-section">
 
-        <div class="container-fluid p-0">
+            <div class="container pb-5">
 
-        <form method="post">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+                <h1 class="text-center mb-4">Connexion</h1>
 
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <label for="inputEmail" class="sr-only">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
-                   placeholder="Email" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password"
-                   required>
+                <p class="text-center no-register">Pas encore inscrit ?<a href=""> Inscrivez vous !</a></p>
 
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}"
-            >
+                <div class="card mx-auto">
+                    <form method="post">
+                        <div class="card-body justify-content-center">
+                            {% if error %}
+                                <div class="alert alert-danger my-1 col-12">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            <label for="inputEmail" class="col-form-label">Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                                   class="form-control"
+                                   placeholder="email@gmail.com" required autofocus>
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
-                    </label>
+                            <label for="inputPassword" class="col-form-label">Mot de passe</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control"
+                                   placeholder="Mot de passe"
+                                   required>
+
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            <div class="row justify-content-center">
+                                <button class="btn btn-form col-11 col-md-4 mt-4" type="submit">Se connecter</button>
+                            </div>
+                            <div class="checkbox mt-3 text-center">
+                                <input type="checkbox" id="_remember_me" name="_remember_me"/>
+                                <label class="form-check-label" for="_remember_me"> Se rappeler de moi </label>
+                            </div>
+                        </div>
+                    </form>
+                    <a class="text-center mb-2" href="">Mot de passe oublié ?</a>
                 </div>
 
-            <button class="btn btn-lg btn-primary" type="submit">
-                Sign in
-            </button>
-        </form>
-
+            </div>
         </div>
+
     </section>
 
 {% endblock %}

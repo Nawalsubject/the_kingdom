@@ -18,7 +18,7 @@ h1 {
 }
 
 h2 {
-  font-family: $font-title;
+  font-family: $font-main-title;
   font-size: calc(35px + (60 - 35) * ((100vw - 300px) / (1600 - 300)));
   color: $primary-text-color;
 }
