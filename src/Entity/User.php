@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -23,6 +24,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Coquebert ! Saisis donc un email !")
+     * @Assert\Email(message="Ton email n'est pas valide !")
      */
     private $email;
 
@@ -34,36 +37,45 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Coquebert ! Saisis donc un mot de passe !")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Saisis un prénom")
+     * @Assert\Length(max="255", maxMessage="Saisis un prénom de moins de {{ limit }} caractères")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Saisis un nom")
+     * @Assert\Length(max="255", maxMessage="Saisis un nom de moins de {{ limit }} caractères")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="Saisis la date de ton entrée au royaume")
      */
     private $enteredAt;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="Saisis la date de ton adoubement")
      */
     private $knightedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\County", inversedBy="users")
+     * @Assert\NotBlank(message="Choisis une contrée")
      */
     private $county;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Trade", inversedBy="users")
+     * @Assert\NotBlank(message="Choisis un corps de métier")
      */
     private $trades;
 

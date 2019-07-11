@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\County;
 use App\Entity\Trade;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -32,7 +33,10 @@ class RegistrationFormType extends AbstractType
                 'by_reference' => false,
             ])
             ->add('email', EmailType::class)
-            ->add('county')
+            ->add('county', EntityType::class, [
+                'class' => County::class,
+                'choice_label' => 'name',
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
