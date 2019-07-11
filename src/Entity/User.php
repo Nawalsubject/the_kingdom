@@ -79,6 +79,11 @@ class User implements UserInterface
      */
     private $trades;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phone;
+
     public function __construct()
     {
         $this->trades = new ArrayCollection();
@@ -244,6 +249,18 @@ class User implements UserInterface
         if ($this->trades->contains($trade)) {
             $this->trades->removeElement($trade);
         }
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

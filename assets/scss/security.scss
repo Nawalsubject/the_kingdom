@@ -37,10 +37,60 @@
   }
 
   .card {
-    @include card-form(30rem, 90%);
+    @include card-form(40rem, 90%);
 
     .btn-form {
-      background-color: $section-color-dark;
+      background-color: $btn-form-controller;
+    }
+
+  }
+}
+
+.register {
+
+  .bg-section {
+    background-color: $section-color-light;
+    padding-bottom: 7vh;
+  }
+
+  h1 {
+    color: $primary-color;
+  }
+
+  .jumbotron {
+    z-index: -10;
+    background-size: contain;
+    background-attachment: fixed;
+    background-image: url('../images/image_header_login.jpg');
+    background-color: rgba(0, 0, 0, 0.3);
+    background-blend-mode: color;
+    height: 45vh;
+    margin-bottom: 0;
+    @media screen and (min-width: 200px) and (max-width: 900px) {
+      background-size: contain;
+      background-image: url('../images/image_header_login_mobile.jpg');
+    }
+  }
+
+  .bg-section-limit {
+    background-image: url("../images/image_banner_upper.png");
+    margin-top: -65px;
+    z-index: 10;
+    height: 95px;
+  }
+
+  a {
+    color: $subtitle-text-color;
+    margin: 0;
+  }
+
+  .card {
+    @include card-form(60rem, 95%);
+
+    .btn-form {
+      background-color: $btn-form-controller;
+      color: $primary-text-color;
+      font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
     }
 
   }

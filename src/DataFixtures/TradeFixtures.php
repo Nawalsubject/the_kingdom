@@ -10,11 +10,11 @@ class TradeFixtures extends Fixture
 {
     const TRADES = [
         'CLERGÉ',
-        'GARDE PRETORIENNE',
         'INTENDANCE',
         'SÉNAT',
         'CONSEIL DES ANCIENS',
         'ARMÉE',
+        'GARDE PRETORIENNE',
     ];
 
     public function load(ObjectManager $manager)
