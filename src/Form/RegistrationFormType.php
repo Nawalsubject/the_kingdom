@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Trade;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -22,7 +24,15 @@ class RegistrationFormType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('enteredAt', DateType::class)
             ->add('knightedAt', DateType::class)
+            ->add('trade', EntityType::class, [
+                'class' => Trade::class,
+                'choice_label' => 'name',
+                'expanded' => true,
+                'multiple' => true,
+                'by_reference' => false,
+            ])
             ->add('email', EmailType::class)
+            ->add('county')
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

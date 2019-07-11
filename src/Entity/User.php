@@ -65,11 +65,11 @@ class User implements UserInterface
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Trade", inversedBy="users")
      */
-    private $trade;
+    private $trades;
 
     public function __construct()
     {
-        $this->trade = new ArrayCollection();
+        $this->trades = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -215,13 +215,13 @@ class User implements UserInterface
      */
     public function getTrade(): Collection
     {
-        return $this->trade;
+        return $this->trades;
     }
 
     public function addTrade(Trade $trade): self
     {
-        if (!$this->trade->contains($trade)) {
-            $this->trade[] = $trade;
+        if (!$this->trades->contains($trade)) {
+            $this->trades[] = $trade;
         }
 
         return $this;
@@ -229,8 +229,8 @@ class User implements UserInterface
 
     public function removeTrade(Trade $trade): self
     {
-        if ($this->trade->contains($trade)) {
-            $this->trade->removeElement($trade);
+        if ($this->trades->contains($trade)) {
+            $this->trades->removeElement($trade);
         }
 
         return $this;
