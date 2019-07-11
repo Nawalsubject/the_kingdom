@@ -37,7 +37,6 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Coquebert ! Saisis donc un mot de passe !")
      */
     private $password;
 
@@ -57,13 +56,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="Saisis la date de ton entrée au royaume")
+     * @Assert\NotNull(message="Saisis la date de ton entrée au royaume")
      */
     private $enteredAt;
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="Saisis la date de ton adoubement")
+     * @Assert\NotNull(message="Saisis la date de ton adoubement")
      */
     private $knightedAt;
 
@@ -76,6 +75,7 @@ class User implements UserInterface
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Trade", inversedBy="users")
      * @Assert\NotBlank(message="Choisis un corps de métier")
+     * @Assert\Count(min="1", minMessage="Choisis au minimum {{ limit }} un corps de métier")
      */
     private $trades;
 
@@ -225,7 +225,7 @@ class User implements UserInterface
     /**
      * @return Collection|Trade[]
      */
-    public function getTrade(): Collection
+    public function getTrades(): Collection
     {
         return $this->trades;
     }
