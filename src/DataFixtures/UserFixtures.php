@@ -28,6 +28,10 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setKnightedAt(new \DateTime('01-07-2010'));
         $user->setCounty($this->getReference('county_' . rand(0, 6)));
         $user->setRoles(["ROLE_ADMIN"]);
+        $nbRandom = rand(0, 2);
+        for ($i = 0; $i <= $nbRandom; $i++) {
+            $user->addTrade($this->getReference('trade_' . rand(0, 5)));
+        }
 
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
@@ -46,6 +50,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
      */
     public function getDependencies()
     {
-        return [CountyFixtures::class];
+        return [CountyFixtures::class, TradeFixtures::class];
     }
 }
