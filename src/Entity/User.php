@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -59,6 +61,16 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\County", inversedBy="users")
      */
     private $county;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Trade", inversedBy="users")
+     */
+    private $trade;
+
+    public function __construct()
+    {
+        $this->trade = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -194,6 +206,32 @@ class User implements UserInterface
     public function setCounty(?County $county): self
     {
         $this->county = $county;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trade[]
+     */
+    public function getTrade(): Collection
+    {
+        return $this->trade;
+    }
+
+    public function addTrade(Trade $trade): self
+    {
+        if (!$this->trade->contains($trade)) {
+            $this->trade[] = $trade;
+        }
+
+        return $this;
+    }
+
+    public function removeTrade(Trade $trade): self
+    {
+        if ($this->trade->contains($trade)) {
+            $this->trade->removeElement($trade);
+        }
 
         return $this;
     }
