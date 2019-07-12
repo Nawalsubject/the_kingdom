@@ -97,10 +97,13 @@ class User implements UserInterface
     private $godChildren;
 
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
      * @Vich\UploadableField(mapping="user_image", fileNameProperty="imageName")
-     *
+     * @Assert\File(
+     *     mimeTypes={ "image/jpg", "image/png", "image/jpeg", "image/gif" },
+     *     maxSize="2M",
+     *     mimeTypesMessage="Veuillez choisir un fichier de type .jpg, .jpeg, .png ou .gif",
+     *     maxSizeMessage="Veuillez choisir un fichier de 1.9Mo maximum"
+     *  )
      * @var File
      */
     private $imageFile;

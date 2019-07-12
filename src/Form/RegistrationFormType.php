@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -101,6 +102,13 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'label' => 'Cellule Royaumienne',
                 'label_attr' => ['class' => 'col-md-12'],
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'label' => 'Photo de profil',
+                'label_attr' => ['class' => 'col-md-12 custom-file'],
+                'allow_delete' => false,
+                'download_link' => false,
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
