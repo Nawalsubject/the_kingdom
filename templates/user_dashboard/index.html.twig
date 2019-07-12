@@ -1,20 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'userLayout.html.twig' %}
 
-{% block title %}Hello UserDashboardController!{% endblock %}
+{% block title %}Mon compte {{ parent() }}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <section class="user-dashboard-section">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/nawalsubject/Documents/Projets/the_kingdom/src/Controller/UserDashboardController.php'|file_link(0) }}">src/Controller/UserDashboardController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/nawalsubject/Documents/Projets/the_kingdom/templates/user_dashboard/index.html.twig'|file_link(0) }}">templates/user_dashboard/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div class="container">
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    Profil
+                </div>
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-4 profil-picture">
+                        <img src="{{ asset('build/image_header_login_mobile.jpg') }}"
+                             class="card-img rounded-circle mx-2 mx-md-4"
+                             alt="photo de profil de {{ user.firstname ~ ' ' ~ user.lastname|upper }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title text-md-left text-center">{{ user.firstname ~ ' ' ~ user.lastname|upper }}</h5>
+                            <p class="card-text"><img src="{{ asset('build/logo_email.png') }}">{{ user.email }}</p>
+                            <p class="card-text"><img src="{{ asset('build/logo_county.png') }}">{{ user.county.name }}
+                            </p>
+                            <p class="card-text"><img
+                                        src="{{ asset('build/logo_phone.png') }}">{{ user.phone ? user.phone : 'Non renseigné' }}
+                            </p>
+                            <p class="card-text"><img src="{{ asset('build/logo_enteredAt.png') }}">Membre
+                                depuis {{ user.enteredAt|date("Y") }}</p>
+                            <p class="card-text"><img
+                                        src="{{ asset('build/logo_knightAt.png') }}">{% if user.knightedAt %}Adoubé en {{ user.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
 {% endblock %}
