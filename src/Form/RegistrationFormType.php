@@ -59,15 +59,14 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('knightedAt', DateType::class, [
                 'label' => 'Date d\'adoubement :',
-                'required' => true,
-                'data' => new \DateTime(),
+                'required' => false,
+                'data' => null,
                 'attr' => [
                     'class' => 'text-left',
                     'min' => $dateMin,
                     'max' => $dateMax,
                 ],
                 'label_attr' => ['class' => 'col-md-12'],
-                'constraints' => new NotBlank(['message' => 'Champ obligatoire']),
                 'widget' => 'single_text',
                 'format' => 'yyyy',
                 'model_timezone' => 'Europe/Paris',
@@ -79,6 +78,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['placeholder' => '06123456789'],
             ])
             ->add('trades', EntityType::class, [
+                'required' => true,
                 'class' => Trade::class,
                 'choice_label' => 'name',
                 'label' => 'Corps de métier',
@@ -97,6 +97,7 @@ class RegistrationFormType extends AbstractType
             ->add('county', EntityType::class, [
                 'class' => County::class,
                 'choice_label' => 'name',
+                'invalid_message' => 'Veuillez choisir un cellule',
                 'required' => true,
                 'label' => 'Cellule Royaumienne',
                 'label_attr' => ['class' => 'col-md-12'],

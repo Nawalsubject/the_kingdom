@@ -61,8 +61,7 @@ class User implements UserInterface
     private $enteredAt;
 
     /**
-     * @ORM\Column(type="date")
-     * @Assert\NotNull(message="Saisis la date de ton adoubement")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $knightedAt;
 
@@ -208,7 +207,7 @@ class User implements UserInterface
         return $this->knightedAt;
     }
 
-    public function setKnightedAt(\DateTimeInterface $knightedAt): self
+    public function setKnightedAt(?\DateTimeInterface $knightedAt): self
     {
         $this->knightedAt = $knightedAt;
 

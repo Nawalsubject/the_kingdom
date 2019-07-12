@@ -13,7 +13,15 @@
   border-radius: unset;
   margin-top: $navbar-height;
 }
+.alert-danger {
+  background-color: $btn-form-controller;
+  color: $primary-text-color;
+}
 
+.alert-success {
+  background-color: $section-color-light;
+  color: $primary-color;
+}
 /*================== Fin Style Alert ===============*/
 
 
