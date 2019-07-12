@@ -24,7 +24,7 @@ class Trade
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="trade")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="trades")
      */
     private $users;
 

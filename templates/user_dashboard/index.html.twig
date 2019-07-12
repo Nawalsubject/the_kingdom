@@ -52,7 +52,7 @@
                         <div class="row align-items-center justify-content-center">
                             {% if buddy %}
                                 <div class="col-md-3 profil-picture">
-                                    <img src="{{ asset('build/image_header_login.jpg') }}"
+                                    <img src="{% if buddy.imageName %}{{ vich_uploader_asset(buddy, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
                                          class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
                                          alt="photo de profil de {{ buddy.firstname ~ ' ' ~ buddy.lastname|upper }}">
                                 </div>
@@ -114,12 +114,12 @@
                             {% if godChildren is not empty %}
                                 {% for godchild in godChildren %}
                                     <div class="col-md-3 profil-picture">
-                                        <img src="{{ asset('build/image_header_login.jpg') }}"
+                                        <img src="{% if godchild.imageName %}{{ vich_uploader_asset(godchild, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
                                              class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
                                              alt="photo de profil de {{ godchild.firstname ~ ' ' ~ godchild.lastname|upper }}">
                                     </div>
                                     <div class="col-md-9">
-                                        <div class="card-body">
+                                        <div class="card-body {% if loop.index < godChildren|length %}godchildNext{% endif %}">
                                             <h5 class="card-title text-md-left text-center">{{ godchild.firstname ~ ' ' ~ godchild.lastname }}</h5>
                                             <p class="card-text ml-md-5 ml-0"><img
                                                         src="{{ asset('build/logo_email.png') }}">{{ godchild.email }}
