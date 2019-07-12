@@ -1,0 +1,22 @@
+<h1> Oyez {{ user.lastname ~ ' ' ~ user.firstname }} </h1>
+
+<p>Votre compte a bien été créé avec les informations suivantes :</p>
+
+<ul>
+    <li>Nom / Prénom : {{ user.lastname ~ ' ' ~ user.firstname }}</li>
+    <li>Téléphone : {{ user.phone }}</li>
+    <li>Mail : {{ user.email }}</li>
+    <li>Date d'entrée au royaume : {{ user.enteredAt|date("Y") }}</li>
+    {% if user.knightedAt %}
+    <li>Date d'adoubement : {{ user.knightedAt|date("Y") }}</li>
+    {% else %}
+    <li>Pas encore adoubé</li>
+    {% endif %}
+    <li>Cellule : {{ user.county.name }}</li>
+    <li>Corps de métier : </li>
+    <ul>
+        {% for trade in user.trades %}
+            <li>{{ trade.name }}</li>
+        {% endfor %}
+    </ul>
+</ul>

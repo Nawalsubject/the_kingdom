@@ -4,6 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    locale: 'en'
+    mailer_from: '%env(resolve:MAILER_FROM)%'
+    mailer_to: '%env(resolve:MAILER_TO)%'
 
 services:
     # default configuration for services in *this* file

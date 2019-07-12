@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
+use App\Services\MailerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,8 @@ class RegistrationController extends AbstractController
         Request $request,
         UserPasswordEncoderInterface $passwordEncoder,
         GuardAuthenticatorHandler $guardHandler,
-        LoginFormAuthenticator $authenticator
+        LoginFormAuthenticator $authenticator,
+        MailerService $mailer
     ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -41,7 +43,17 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
+            $bodyMail = $this->renderView(
+                'email/registerMail.html.twig',
+                ['user' => $user]
+            );
+
+            $sender = $this->getParameter('mailer_from');
+            $destination = $user->getEmail();
+
+            $mailer->sendMail($sender, $destination, 'Confirmation d\'inscription', 'text/html', $bodyMail);
+
+            $this->addFlash('success' , 'Ton compte a bien été créé. Un parchemin arrive dans ta boite mail sous peu');
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
