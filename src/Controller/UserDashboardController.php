@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -16,7 +18,7 @@ class UserDashboardController extends AbstractController
     /**
      * @Route("/dashboard", name="user_dashboard")
      */
-    public function index()
+    public function index(): Response
     {
         $user = $this->getUser();
 
@@ -36,12 +38,30 @@ class UserDashboardController extends AbstractController
      * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userListing(UserRepository $userRepository)
+    public function userListing(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
 
         return $this->render('user/userListing.html.twig', [
             'users' => $users,
         ]);
+    }
+
+    /**
+     * @Route("/{id}/add-buddy", name="add_buddy")
+     * @param User $buddy
+     * @return Response
+     */
+    public function addBuddy(User $buddy): Response
+    {
+        $user = $this->getUser();
+        $user->setBuddy($buddy);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Votre parrain vous a bien été affecté');
+
+        return $this->redirectToRoute('user_dashboard');
     }
 }

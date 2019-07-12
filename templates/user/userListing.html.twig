@@ -23,7 +23,7 @@
                                     </a>
 
                                     <div class="dropdown-menu mt-4" aria-labelledby="dropdownAction{{ user.id }}">
-                                        <a class="dropdown-item {% if app.user.buddy %} disabled {% endif %}" href="#">Ajouter comme parrain</a>
+                                        <a class="dropdown-item" {% if app.user.buddy %} href="{{ path('add_buddy' , {'id': app.user.buddy.id}) }}"{% endif %} href="#">Ajouter comme parrain</a>
                                         <a class="dropdown-item" href="#">Ajouter comme filleul</a>
                                     </div>
                                 </div>
