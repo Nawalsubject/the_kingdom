@@ -14,8 +14,11 @@ class UserDashboardController extends AbstractController
     {
         $user = $this->getUser();
 
+        $buddy = $user->getBuddy();
+
         return $this->render('user_dashboard/index.html.twig', [
             'user' => $user,
+            'buddy' => $buddy,
         ]);
     }
 }

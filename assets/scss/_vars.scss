@@ -41,6 +41,7 @@ $navbar-height: 100px;
   }
 }
 @mixin card-dashboard($width, $max-width) {
+  background-color: $primary-text-color;
   width: $width;
   max-width: $max-width;
   border: unset;
