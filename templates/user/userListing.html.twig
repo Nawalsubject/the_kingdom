@@ -15,7 +15,7 @@
                     <div class="col-md-6">
                         <div class="card card-profile mb-5">
                             <h3 class="card-header">
-                                Mon profil
+                                {{ user.firstname ~ ' ' ~ user.lastname }}
 
                                 <div class="dropdown float-right">
                                     <a href="#" role="button" id="dropdownAction{{ user.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,9 +23,8 @@
                                     </a>
 
                                     <div class="dropdown-menu mt-4" aria-labelledby="dropdownAction{{ user.id }}">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item {% if app.user.buddy %} disabled {% endif %}" href="#">Ajouter comme parrain</a>
+                                        <a class="dropdown-item" href="#">Ajouter comme filleul</a>
                                     </div>
                                 </div>
 
@@ -38,7 +37,6 @@
                                 </div>
                                 <div class="col-md-9">
                                     <div class="card-body">
-                                        <h5 class="card-title text-md-left text-center">{{ user.firstname ~ ' ' ~ user.lastname }}</h5>
                                         <p class="card-text ml-md-5 ml-0"><img
                                                     src="{{ asset('build/logo_email.png') }}">{{ user.email }}</p>
                                         <p class="card-text ml-md-5 ml-0"><img
