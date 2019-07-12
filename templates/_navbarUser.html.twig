@@ -22,6 +22,9 @@
         <a class="nav-item nav-link py-auto {% if app.request.attributes.get("_route") == 'user_dashboard'%} active {% endif %}" href="{{ path('user_dashboard') }}">
             <i class="fas fa-user-circle"></i>
         </a>
+        <a class="nav-item nav-link py-auto" href="{{ path('app_logout') }}">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
     </div>
 </nav>
 
