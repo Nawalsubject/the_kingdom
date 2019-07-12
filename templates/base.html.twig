@@ -7,6 +7,19 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success mb-0 px-0 text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger mb-0 px-0 text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     {% block navbar %}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

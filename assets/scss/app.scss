@@ -3,7 +3,21 @@
 @import "index";
 @import "security";
 
-/* ------ STYLE NAVBAR ----------- */
+
+
+/*================== Style Alert ===============*/
+
+.alert {
+  border: none;
+  padding: 20px;
+  border-radius: unset;
+  margin-top: $navbar-height;
+}
+
+/*================== Fin Style Alert ===============*/
+
+
+/* ================== STYLE NAVBAR ================== */
 
 
 body {
@@ -87,7 +101,7 @@ h4 {
   font-size: 1.8rem;
 }
 
-/* ------ END STYLE NAVBAR -------- */
+/* ================== END STYLE NAVBAR ================== */
 
 @font-face {
   font-family: "Kingdom";
