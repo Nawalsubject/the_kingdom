@@ -6,37 +6,63 @@
 
     <section class="user-dashboard-section">
 
-        <div class="container">
+        <div class="container-fluid">
 
-            <div class="card mb-3">
-                <h3 class="card-header">
-                    Mon profil
-                </h3>
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-3 profil-picture">
-                        <img src="{{ asset('build/image_header_login.jpg') }}"
-                             class="card-img rounded-circle mx-2 mx-md-4"
-                             alt="photo de profil de {{ user.firstname ~ ' ' ~ user.lastname|upper }}">
+            <div class="row mx-auto">
+
+                <div class="col-md-6">
+                    <div class="card card-profile mb-5">
+                        <h3 class="card-header">
+                            Mon profil
+                        </h3>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-3 profil-picture">
+                                <img src="{{ asset('build/image_header_login.jpg') }}"
+                                     class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
+                                     alt="photo de profil de {{ user.firstname ~ ' ' ~ user.lastname|upper }}">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <h5 class="card-title text-md-left text-center">{{ user.firstname ~ ' ' ~ user.lastname }}</h5>
+                                    <p class="card-text ml-md-5 ml-0"><img
+                                                src="{{ asset('build/logo_email.png') }}">{{ user.email }}</p>
+                                    <p class="card-text ml-md-5 ml-0"><img
+                                                src="{{ asset('build/logo_county.png') }}">{{ user.county.name }}
+                                    </p>
+                                    <p class="card-text ml-md-5 ml-0"><img
+                                                src="{{ asset('build/logo_phone.png') }}">{{ user.phone ? user.phone : 'Non renseigné' }}
+                                    </p>
+                                    <p class="card-text ml-md-5 ml-0"><img
+                                                src="{{ asset('build/logo_enteredAt.png') }}">Membre
+                                        depuis {{ user.enteredAt|date("Y") }}</p>
+                                    <p class="card-text ml-md-5 ml-0"><img
+                                                src="{{ asset('build/logo_knightAt.png') }}">{% if user.knightedAt %}Adoubé en {{ user.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-9">
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card card-trade">
+                        <h3 class="card-header">
+                            Mes Métiers
+                        </h3>
                         <div class="card-body">
-                            <h5 class="card-title text-md-left text-center">{{ user.firstname ~ ' ' ~ user.lastname }}</h5>
-                            <p class="card-text"><img src="{{ asset('build/logo_email.png') }}">{{ user.email }}</p>
-                            <p class="card-text"><img src="{{ asset('build/logo_county.png') }}">{{ user.county.name }}
-                            </p>
-                            <p class="card-text"><img
-                                        src="{{ asset('build/logo_phone.png') }}">{{ user.phone ? user.phone : 'Non renseigné' }}
-                            </p>
-                            <p class="card-text"><img src="{{ asset('build/logo_enteredAt.png') }}">Membre
-                                depuis {{ user.enteredAt|date("Y") }}</p>
-                            <p class="card-text"><img
-                                        src="{{ asset('build/logo_knightAt.png') }}">{% if user.knightedAt %}Adoubé en {{ user.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
-                            </p>
+                            <ul>
+                                {% for trade in user.trades %}
+                                    <h5 class="card-title mt-3"><img src="{{ asset('build/logo_logistic.png') }}"
+                                                                     alt="{{ trade.name }}">{{ trade.name }}</h5>
+                                    {% for job in trade.jobs %}
+                                        <li class="card-text">{{ job.name }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </section>

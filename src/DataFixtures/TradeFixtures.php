@@ -10,12 +10,12 @@ use Doctrine\Common\Persistence\ObjectManager;
 class TradeFixtures extends Fixture implements DependentFixtureInterface
 {
     const TRADES = [
-        'CLERGÉ',
-        'INTENDANCE',
-        'SÉNAT',
-        'CONSEIL DES ANCIENS',
-        'ARMÉE',
-        'GARDE PRETORIENNE',
+        'Clergé',
+        'Intendance',
+        'Sénat',
+        'Conseil des anciens',
+        'Armée',
+        'Garde Prétorienne',
     ];
 
     public function load(ObjectManager $manager)
