@@ -84,19 +84,19 @@ class User implements UserInterface
     private $phone;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="godchild")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="godChildren")
      */
     private $buddy;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="buddy")
      */
-    private $godchild;
+    private $godChildren;
 
     public function __construct()
     {
         $this->trades = new ArrayCollection();
-        $this->godchild = new ArrayCollection();
+        $this->godChildren = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -290,15 +290,15 @@ class User implements UserInterface
     /**
      * @return Collection|self[]
      */
-    public function getGodchild(): Collection
+    public function getGodchildren(): Collection
     {
-        return $this->godchild;
+        return $this->godChildren;
     }
 
     public function addGodchild(self $user): self
     {
-        if (!$this->godchild->contains($user)) {
-            $this->godchild[] = $user;
+        if (!$this->godChildren->contains($user)) {
+            $this->godChildren[] = $user;
             $user->setBuddy($this);
         }
 
@@ -307,8 +307,8 @@ class User implements UserInterface
 
     public function removeGodchild(self $user): self
     {
-        if ($this->godchild->contains($user)) {
-            $this->godchild->removeElement($user);
+        if ($this->godChildren->contains($user)) {
+            $this->godChildren->removeElement($user);
             // set the owning side to null (unless already changed)
             if ($user->getBuddy() === $this) {
                 $user->setBuddy(null);

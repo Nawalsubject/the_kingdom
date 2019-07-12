@@ -50,30 +50,34 @@
                             Mon parrain
                         </div>
                         <div class="row align-items-center justify-content-center">
-                            <div class="col-md-3 profil-picture">
-                                <img src="{{ asset('build/image_header_login.jpg') }}"
-                                     class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
-                                     alt="photo de profil de {{ buddy.firstname ~ ' ' ~ buddy.lastname|upper }}">
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                    <h5 class="card-title text-md-left text-center">{{ buddy.firstname ~ ' ' ~ buddy.lastname }}</h5>
-                                    <p class="card-text ml-md-5 ml-0"><img
-                                                src="{{ asset('build/logo_email.png') }}">{{ buddy.email }}</p>
-                                    <p class="card-text ml-md-5 ml-0"><img
-                                                src="{{ asset('build/logo_county.png') }}">{{ buddy.county.name }}
-                                    </p>
-                                    <p class="card-text ml-md-5 ml-0"><img
-                                                src="{{ asset('build/logo_phone.png') }}">{{ buddy.phone ? buddy.phone : 'Non renseigné' }}
-                                    </p>
-                                    <p class="card-text ml-md-5 ml-0"><img
-                                                src="{{ asset('build/logo_enteredAt.png') }}">Membre
-                                        depuis {{ buddy.enteredAt|date("Y") }}</p>
-                                    <p class="card-text ml-md-5 ml-0"><img
-                                                src="{{ asset('build/logo_knightAt.png') }}">{% if buddy.knightedAt %}Adoubé en {{ buddy.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
-                                    </p>
+                            {% if buddy %}
+                                <div class="col-md-3 profil-picture">
+                                    <img src="{{ asset('build/image_header_login.jpg') }}"
+                                         class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
+                                         alt="photo de profil de {{ buddy.firstname ~ ' ' ~ buddy.lastname|upper }}">
                                 </div>
-                            </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-md-left text-center">{{ buddy.firstname ~ ' ' ~ buddy.lastname }}</h5>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_email.png') }}">{{ buddy.email }}</p>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_county.png') }}">{{ buddy.county.name }}
+                                        </p>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_phone.png') }}">{{ buddy.phone ? buddy.phone : 'Non renseigné' }}
+                                        </p>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_enteredAt.png') }}">Membre
+                                            depuis {{ buddy.enteredAt|date("Y") }}</p>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_knightAt.png') }}">{% if buddy.knightedAt %}Adoubé en {{ buddy.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                Aucun parrain
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -84,18 +88,66 @@
                             Mes Métiers
                         </h3>
                         <div class="card-body">
-                            <ul>
-                                {% for trade in user.trades %}
-                                    <h5 class="card-title mt-3"><img src="{{ asset('build/logo_logistic.png') }}"
-                                                                     alt="{{ trade.name }}">{{ trade.name }}</h5>
-                                    {% for job in trade.jobs %}
-                                        <li class="card-text">{{ job.name }}</li>
+                            {% if user.trades %}
+                                <ul>
+                                    {% for trade in user.trades %}
+                                        <h5 class="card-title mt-3"><img src="{{ asset('build/logo_logistic.png') }}"
+                                                                         alt="{{ trade.name }}">{{ trade.name }}</h5>
+                                        {% for job in trade.jobs %}
+                                            <li class="card-text">{{ job.name }}</li>
+                                        {% endfor %}
                                     {% endfor %}
-                                {% endfor %}
-                            </ul>
+                                </ul>
+                            {% else %}
+                                Aucun métier
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="card-godchild mb-5">
+                        <div class="card-header">
+                            Mes filleuls
+                        </div>
+                        <div class="row align-items-center justify-content-center">
+                            {% if godChildren is not empty %}
+                                {% for godchild in godChildren %}
+                                    <div class="col-md-3 profil-picture">
+                                        <img src="{{ asset('build/image_header_login.jpg') }}"
+                                             class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
+                                             alt="photo de profil de {{ godchild.firstname ~ ' ' ~ godchild.lastname|upper }}">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-md-left text-center">{{ godchild.firstname ~ ' ' ~ godchild.lastname }}</h5>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_email.png') }}">{{ godchild.email }}
+                                            </p>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_county.png') }}">{{ godchild.county.name }}
+                                            </p>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_phone.png') }}">{{ godchild.phone ? godchild.phone : 'Non renseigné' }}
+                                            </p>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_enteredAt.png') }}">Membre
+                                                depuis {{ godchild.enteredAt|date("Y") }}</p>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_knightAt.png') }}">{% if godchild.knightedAt %}Adoubé en {{ godchild.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="py-4">Aucun filleul</p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 

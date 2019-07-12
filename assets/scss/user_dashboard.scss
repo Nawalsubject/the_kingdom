@@ -104,3 +104,38 @@
     }
   }
 }
+
+
+
+.card-godchild {
+  @include card-dashboard(35rem, 100%);
+
+  .profil-picture {
+    img {
+      width: 8rem;
+      height: 8rem;
+      object-fit: cover;
+      box-shadow: 0 0 3px 3px $section-color-light;
+    }
+  }
+
+  .card-body {
+    padding-left: 2rem;
+
+    .card-title {
+      font-family: $font-main-title;
+      font-size: 2rem;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: 15px;
+    }
+
+    p {
+      font-size: 0.8rem;
+      margin: 0 0 5px 0;
+    }
+  }
+}
