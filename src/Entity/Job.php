@@ -26,6 +26,11 @@ class Job
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trade", inversedBy="jobs")
+     */
+    private $trade;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Job
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTrade(): ?Trade
+    {
+        return $this->trade;
+    }
+
+    public function setTrade(?Trade $trade): self
+    {
+        $this->trade = $trade;
 
         return $this;
     }

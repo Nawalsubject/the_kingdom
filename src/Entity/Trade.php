@@ -28,9 +28,15 @@ class Trade
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Job", mappedBy="trade")
+     */
+    private $jobs;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,6 +79,37 @@ class Trade
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             $user->removeTrade($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Job[]
+     */
+    public function getJobs(): Collection
+    {
+        return $this->jobs;
+    }
+
+    public function addJob(Job $job): self
+    {
+        if (!$this->jobs->contains($job)) {
+            $this->jobs[] = $job;
+            $job->setTrade($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJob(Job $job): self
+    {
+        if ($this->jobs->contains($job)) {
+            $this->jobs->removeElement($job);
+            // set the owning side to null (unless already changed)
+            if ($job->getTrade() === $this) {
+                $job->setTrade(null);
+            }
         }
 
         return $this;
