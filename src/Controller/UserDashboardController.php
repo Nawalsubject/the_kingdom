@@ -55,6 +55,12 @@ class UserDashboardController extends AbstractController
     public function addBuddy(User $buddy): Response
     {
         $user = $this->getUser();
+
+        if ($user->getBuddy()) {
+            $this->addFlash('danger', 'Vous avez déjà un parrain');
+            return $this->redirectToRoute('user_listing');
+        }
+
         $user->setBuddy($buddy);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
