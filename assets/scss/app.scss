@@ -64,7 +64,6 @@ h4 {
   -o-transition: all 0.6s ease-out;
   -ms-transition: all 0.6s ease-out;
   transition: all 0.6s ease-out;
-  height: 100px;
 
   .navbar-brand {
     height: $navbar-height;
@@ -102,7 +101,7 @@ h4 {
   height: auto;
   width: 100px;
   position: absolute;
-  top: 35px;
+  top: 25px;
   left: 18px;
 }
 

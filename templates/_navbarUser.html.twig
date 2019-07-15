@@ -1,55 +1,32 @@
-{% if app.user %}
-
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-transparent fixed-top" id="navbar">
-        <a href="{{ path('app_index') }}">
-            <img class="logo-navbar"
-                 src="{{ asset('build/logo_royaume.png') }}"
-                 alt="logo de la ferme de la voliere">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarKingdom"
-                aria-controls="navbarKingdom" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarKingdom">
-            <div class="navbar-nav py-0 ml-auto text-right">
-                <a class="nav-item nav-link mx-2" href="">DOCUMENTS</a>
-                <span>|</span>
-                <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'user_listing' %} active {% endif %}"
-                   href="{{ path('user_listing') }}">MEMBRES</a>
-            </div>
-            <div class="navbar-nav text-right">
-                <a class="nav-item nav-link py-auto {% if app.request.attributes.get("_route") == 'user_dashboard' %} active {% endif %}"
-                   href="{{ path('user_dashboard') }}">
-                    <i class="fas fa-user-circle"></i>
-                </a>
-                <a class="nav-item nav-link py-auto" href="{{ path('app_logout') }}">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-transparent fixed-top" id="navbar">
+    <a href="{{ path('app_index') }}">
+        <img class="logo-navbar"
+             src="{{ asset('build/logo_royaume.png') }}"
+             alt="logo de la ferme de la voliere">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarKingdom"
+            aria-controls="navbarKingdom" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarKingdom">
+        <div class="navbar-nav py-0 ml-auto text-right">
+            {% if not app.user %}
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_login' %} active {% endif %}"
+               href="{{ path('app_login') }}">SE CONNECTER</a>
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_register' %} active {% endif %}"
+               href="{{ path('app_register') }}">S'INSCRIRE</a>
+            {% else %}
+            <a class="nav-item nav-link mx-2" href="">DOCUMENTS</a>
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'user_listing' %} active {% endif %}"
+               href="{{ path('user_listing') }}">MEMBRES</a>
+            <a class="nav-item nav-link py-auto {% if app.request.attributes.get("_route") == 'user_dashboard' %} active {% endif %}"
+               href="{{ path('user_dashboard') }}">
+                <i class="fas fa-user-circle"></i>
+            </a>
+            <a class="nav-item nav-link py-auto" href="{{ path('app_logout') }}">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
         </div>
-    </nav>
-
-{% else %}
-
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-transparent fixed-top" id="navbar">
-        <a href="{{ path('app_index') }}">
-            <img class="logo-navbar"
-                 src="{{ asset('build/logo_royaume.png') }}"
-                 alt="logo de la ferme de la voliere">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarKingdom"
-                aria-controls="navbarKingdom" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarKingdom">
-            <div class="navbar-nav py-0 ml-auto text-right">
-                <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_login' %} active {% endif %}"
-                   href="{{ path('app_login') }}">SE CONNECTER</a>
-                <span>|</span>
-                <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_register' %} active {% endif %}"
-                   href="{{ path('app_register') }}">S'INSCRIRE</a>
-            </div>
-        </div>
-    </nav>
-
-{% endif %}
+        {% endif %}
+    </div>
+</nav>
