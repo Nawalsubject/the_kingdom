@@ -70,4 +70,23 @@ class UserDashboardController extends AbstractController
 
         return $this->redirectToRoute('user_dashboard');
     }
+
+    /**
+     * @Route("/{id}/add-godchild", name="add_godchild")
+     * @param User $godchild
+     * @return Response
+     */
+    public function addGodchild(User $godchild): Response
+    {
+        $user = $this->getUser();
+
+        $user->addGodchild($godchild);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Votre filleul vous a bien été affecté');
+
+        return $this->redirectToRoute('user_dashboard');
+    }
 }
