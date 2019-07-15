@@ -41,6 +41,8 @@
 
     .btn-form {
       background-color: $btn-form-controller;
+      color: $primary-text-color;
+      font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
     }
 
   }
