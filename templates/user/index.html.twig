@@ -10,7 +10,7 @@
 
             <div class="row mx-auto">
 
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="card card-profile mb-5">
                         <h3 class="card-header">
                             Mon profil
@@ -44,12 +44,17 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="card-buddy mb-5">
                         <div class="card-header">
                             Mon parrain
                             {% if not buddy %}
-                            <a href="{{ path('user_listing') }}"><i class="fas fa-plus-circle float-right"></i></a>
+                                <a data-toggle="tooltip"
+                                   data-placement="right"
+                                   title=" Ajouter un filleul "
+                                   href="{{ path('user_listing') }}">
+                                    <i class="fas fa-plus-circle float-right"></i>
+                                </a>
                             {% endif %}
                         </div>
                         <div class="row align-items-center justify-content-center">
@@ -85,7 +90,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="card card-trade mb-5">
                         <h3 class="card-header">
                             Mes Métiers
@@ -108,11 +113,16 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="card-godchild mb-5">
                         <div class="card-header">
                             Mes filleuls
-                            <a href="{{ path('user_listing') }}"><i class="fas fa-plus-circle float-right"></i></a>
+                            <a data-toggle="tooltip"
+                               data-placement="right"
+                               title=" Ajouter un filleul "
+                               href="{{ path('user_listing') }}">
+                                <i class="fas fa-plus-circle float-right"></i>
+                            </a>
                         </div>
                         <div class="row align-items-center justify-content-center">
                             {% if godChildren is not empty %}
