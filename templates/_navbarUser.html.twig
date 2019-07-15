@@ -14,7 +14,8 @@
             <div class="navbar-nav py-0 ml-auto text-right">
                 <a class="nav-item nav-link mx-2" href="">DOCUMENTS</a>
                 <span>|</span>
-                <a class="nav-item nav-link mx-2" href="">MEMBRES</a>
+                <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'user_listing' %} active {% endif %}"
+                   href="{{ path('user_listing') }}">MEMBRES</a>
             </div>
             <div class="navbar-nav text-right">
                 <a class="nav-item nav-link py-auto {% if app.request.attributes.get("_route") == 'user_dashboard' %} active {% endif %}"

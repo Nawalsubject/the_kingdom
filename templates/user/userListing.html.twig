@@ -1,0 +1,66 @@
+{% extends 'userLayout.html.twig' %}
+
+{% block title %}Mon compte {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <section class="user-listing-section">
+
+        <div class="container-fluid">
+
+            <div class="row mx-auto justify-content-center">
+
+                {% for user in users %}
+
+                    <div class="col-md-6">
+                        <div class="card card-profile mb-5">
+                            <h3 class="card-header">
+                                {{ user.firstname ~ ' ' ~ user.lastname }}
+
+                                <div class="dropdown float-right">
+                                    <a href="#" role="button" id="dropdownAction{{ user.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-plus-circle float-right"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu mt-4" aria-labelledby="dropdownAction{{ user.id }}">
+                                        <a class="dropdown-item" {% if app.user.buddy %} href="{{ path('add_buddy' , {'id': app.user.buddy.id}) }}"{% endif %} href="#">Ajouter comme parrain</a>
+                                        <a class="dropdown-item" href="#">Ajouter comme filleul</a>
+                                    </div>
+                                </div>
+
+                            </h3>
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-md-3 profil-picture">
+                                    <img src="{% if user.imageName %}{{ vich_uploader_asset(user, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
+                                         class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
+                                         alt="photo de profil de {{ user.firstname ~ ' ' ~ user.lastname|upper }}">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_email.png') }}">{{ user.email }}</p>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_county.png') }}">{{ user.county.name }}
+                                        </p>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_phone.png') }}">{{ user.phone ? user.phone : 'Non renseigné' }}
+                                        </p>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_enteredAt.png') }}">Membre
+                                            depuis {{ user.enteredAt|date("Y") }}</p>
+                                        <p class="card-text ml-md-5 ml-0"><img
+                                                    src="{{ asset('build/logo_knightAt.png') }}">{% if user.knightedAt %}Adoubé en {{ user.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -48,6 +48,9 @@
                     <div class="card-buddy mb-5">
                         <div class="card-header">
                             Mon parrain
+                            {% if not buddy %}
+                            <a href="{{ path('user_listing') }}"><i class="fas fa-plus-circle float-right"></i></a>
+                            {% endif %}
                         </div>
                         <div class="row align-items-center justify-content-center">
                             {% if buddy %}
@@ -109,6 +112,7 @@
                     <div class="card-godchild mb-5">
                         <div class="card-header">
                             Mes filleuls
+                            <a href="{{ path('user_listing') }}"><i class="fas fa-plus-circle float-right"></i></a>
                         </div>
                         <div class="row align-items-center justify-content-center">
                             {% if godChildren is not empty %}
