@@ -101,20 +101,22 @@
                         <h3 class="card-header">
                             Mes Métiers
                         </h3>
-                        <div class="card-body">{#
-                            {% if user.trades %}
+                        <div class="card-body">
+                            {% if user.jobs %}
                                 <ul>
-                                    {% for trade in user.trades %}
+{#                                    {% for trade in user.trades %}
                                         <h5 class="card-title mt-3"><img src="{{ asset('build/logo_logistic.png') }}"
-                                                                         alt="{{ trade.name }}">{{ trade.name }}</h5>
-                                        {% for job in trade.jobs %}
+                                                                         alt="{{ trade.name }}">{{ trade.name }}</h5>#}
+                                        {% for job in user.jobs %}
+
+                                            <h5 class="card-title mt-3"><img src="{{ asset('build/logo_logistic.png') }}"
+                                                                             alt="{{ job.trade.name }}">{{ job.trade.name }}</h5>
                                             <li class="card-text">{{ job.name }}</li>
                                         {% endfor %}
-                                    {% endfor %}
                                 </ul>
                             {% else %}
                                 Aucun métier
-                            {% endif %}#}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
