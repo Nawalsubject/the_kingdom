@@ -167,9 +167,8 @@ class UserDashboardController extends AbstractController
         ]);
     }
 
-
     /**
-     * @Route("/{id}", name="buddy_delete", methods={"DELETE"})
+     * @Route("/buddy/{id}", name="buddy_delete", methods={"DELETE"})
      * @param Request $request
      * @param User $buddy
      * @return Response
@@ -187,4 +186,22 @@ class UserDashboardController extends AbstractController
         return $this->redirectToRoute('user_dashboard');
     }
 
+    /**
+     * @Route("/godchild/{id}", name="godchild_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param User $godchild
+     * @return Response
+     */
+    public function deleteGodchild(Request $request, User $godchild): Response
+    {
+        $user = $this->getUser();
+
+        if ($this->isCsrfTokenValid('delete'.$godchild->getId(), $request->request->get('_token'))) {
+            $user->removeGodchild($godchild);
+            $this->getDoctrine()->getManager()->flush();
+        }
+        $this->addFlash('success', 'Votre suppression a bien été effectuée');
+
+        return $this->redirectToRoute('user_dashboard');
+    }
 }

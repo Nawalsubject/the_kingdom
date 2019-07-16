@@ -183,6 +183,17 @@
                                     <div class="col-md-9">
                                         <div class="card-body {% if loop.index < godChildren|length %}godchildNext{% endif %}">
                                             <h5 class="card-title text-md-left text-center">{{ godchild.firstname ~ ' ' ~ godchild.lastname }}</h5>
+                                            <form method="post" action="{{ path('godchild_delete', {'id': godchild.id}) }}"
+                                                  onsubmit="return confirm('Voulez-vous supprimer {{ godchild.firstname ~ ' ' ~ godchild.lastname }} de vos filleuls ?');">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ godchild.id) }}">
+                                                <button class="btn my-auto float-right"
+                                                        data-toggle="tooltip"
+                                                        data-placement="right"
+                                                        title=" Supprimer de vos filleul ">
+                                                    <i class="fas fa-trash-alt float-right"></i>
+                                                </button>
+                                            </form>
                                             <p class="card-text ml-md-5 ml-0"><img
                                                         src="{{ asset('build/logo_email.png') }}">{{ godchild.email }}
                                             </p>
