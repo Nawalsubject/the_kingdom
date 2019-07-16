@@ -53,14 +53,28 @@
                 <div class="col-lg-5">
                     <div class="card card-buddy mx-auto mb-5">
                         <div class="card-header">
-                            Mon parrain
+
                             {% if not buddy %}
+                                Mon parrain
                                 <a data-toggle="tooltip"
                                    data-placement="right"
                                    title=" Ajouter un parrain "
                                    href="{{ path('user_listing', {'addWhat': 'buddy'}) }}">
                                     <i class="fas fa-plus-circle float-right"></i>
                                 </a>
+                            {% else %}
+                                <form method="post" action="{{ path('buddy_delete', {'id': buddy.id}) }}"
+                                      onsubmit="return confirm('Voulez-vous supprimer votre parrain ?');">
+                                    <p class="float-left mt-1 mb-0">Mon parrain</p>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ buddy.id) }}">
+                                    <button class="btn my-auto float-right"
+                                            data-toggle="tooltip"
+                                            data-placement="right"
+                                            title=" Supprimer un parrain ">
+                                        <i class="fas fa-trash-alt float-right"></i>
+                                    </button>
+                                </form>
                             {% endif %}
                         </div>
                         <div class="row align-items-center justify-content-center">

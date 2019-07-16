@@ -36,8 +36,6 @@ class UserDashboardController extends AbstractController
 
         $jobs = $jobRepository->findByUserWithTrades($user->getId());
 
-        dump($jobs);
-
         return $this->render('user/index.html.twig', [
             'user' => $user,
             'buddy' => $buddy,
@@ -167,6 +165,26 @@ class UserDashboardController extends AbstractController
             'user' => $user,
             'jobsForm' => $form->createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/{id}", name="buddy_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param User $buddy
+     * @return Response
+     */
+    public function deleteBuddy(Request $request, User $buddy): Response
+    {
+        $user = $this->getUser();
+
+        if ($this->isCsrfTokenValid('delete'.$buddy->getId(), $request->request->get('_token'))) {
+            $user->setBuddy(null);
+            $this->getDoctrine()->getManager()->flush();
+        }
+        $this->addFlash('success', 'Votre suppression a bien été effectuée');
+
+        return $this->redirectToRoute('user_dashboard');
     }
 
 }
