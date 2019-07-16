@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserInformationType;
 use App\Form\UserJobsType;
+use App\Repository\JobRepository;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,7 @@ class UserDashboardController extends AbstractController
     /**
      * @Route("/dashboard", name="user_dashboard")
      */
-    public function index(): Response
+    public function index(JobRepository $jobRepository): Response
     {
 
         $user = $this->getUser();
@@ -33,10 +34,14 @@ class UserDashboardController extends AbstractController
 
         $godChildren = $user->getGodChildren();
 
+        $jobs = $jobRepository->findByUserWithTrades($user->getId());
+
+        dump($jobs);
 
         return $this->render('user/index.html.twig', [
             'user' => $user,
             'buddy' => $buddy,
+            'jobs' => $jobs,
             'godChildren' => $godChildren,
         ]);
     }

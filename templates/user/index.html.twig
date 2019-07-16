@@ -108,22 +108,34 @@
                             </a>
                         </h3>
                         <div class="card-body">
-                            {% if user.jobs %}
+                            {% if jobs %}
                                 <ul>
-                                    {% for job in user.jobs %}
+                                    {% for job in jobs %}
 
-                                        {% if job.trade %}
+                                        {% if not job.trade %}
+                                            {% set trade = 'Aucun corps de métier' %}
+                                        {% endif %}
+                                        {% if loop.index == 1 %}
+                                            {% set trade = job.trade.name %}
                                             <h5 class="card-title mt-3">
                                                 <img src="{% if job.trade.imageName %}
                                                                 {{ vich_uploader_asset(job.trade, 'imageFile') }}
                                                             {% else %}
-                                                                {{ asset('build/logo_logistic.png') }}
+                                                                {{ asset('build/logo_royaume.png') }}
                                                             {% endif %}"
-                                                     alt="{{ job.trade.name }}">{{ job.trade.name }}</h5>
-                                        {% else %}
+                                                     alt="{{ trade }}">{{ trade }}
+                                            </h5>
+                                        {% endif %}
+                                        {% if job.trade.name != trade %}
+                                            {% set trade = job.trade.name %}
                                             <h5 class="card-title mt-3">
-                                                <img src="{{ asset('build/logo_royaume.png') }}"
-                                                     alt="aucun corps de métier">Aucun corps de métier</h5>
+                                                <img src="{% if job.trade.imageName %}
+                                                                {{ vich_uploader_asset(job.trade, 'imageFile') }}
+                                                            {% else %}
+                                                                {{ asset('build/logo_royaume.png') }}
+                                                            {% endif %}"
+                                                     alt="{{ trade }}">{{ trade }}
+                                            </h5>
                                         {% endif %}
                                         <li class="card-text">{{ job.name }}</li>
                                     {% endfor %}

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Job;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,24 @@ class JobRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Job::class);
+    }
+
+    /**
+     * @return Job[] Returns an array of Job objects
+     */
+    public function findByUserWithTrades($user)
+    {
+        return $this->createQueryBuilder('j')
+            ->leftJoin('j.users', 'u')
+            ->addSelect('u')
+            ->leftJoin('j.trade', 't')
+            ->addSelect('t')
+            ->where('u.id = :user')
+            ->setParameter('user', $user)
+            ->addOrderBy('t.name')
+            ->addOrderBy('j.name')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**
