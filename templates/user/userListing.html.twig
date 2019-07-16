@@ -14,27 +14,18 @@
 
                     <div class="col-lg-6">
                         <div class="card card-profile mx-auto mb-5">
-                            <h3 class="card-header">
+                            <h3 class="card-header align-items-center">
                                 {{ user.firstname ~ ' ' ~ user.lastname }}
-
-                                <div class="dropdown dropleft float-right">
-                                    <a href="#" role="button" id="dropdownAction{{ user.id }}" data-toggle="dropdown"
-                                       aria-haspopup="true" aria-expanded="false">
+                                {% if addWhat != 'nothing' %}
+                                    <a href="
+                                        {% if addWhat == 'buddy' %}
+                                            {{ path('add_buddy' , {'id': user.id}) }}
+                                        {% else %}
+                                            {{ path('add_godchild', {'id' : user.id}) }}
+                                        {% endif %}">
                                         <i class="fas fa-plus-circle float-right"></i>
                                     </a>
-
-                                    <div class="dropdown-menu mt-4" aria-labelledby="dropdownAction{{ user.id }}">
-                                        <a class="dropdown-item {{ app.user.buddy ? 'disabled' : '' }}"
-                                           {% if app.user.buddy %}
-                                                href="#"
-                                           {% endif %}
-                                           href="{{ path('add_buddy' , {'id': user.id}) }}">
-                                            Ajouter comme parrain
-                                        </a>
-                                        <a class="dropdown-item" href="{{ path('add_godchild', {'id' : user.id}) }}">Ajouter comme filleul</a>
-                                    </div>
-                                </div>
-
+                                {% endif %}
                             </h3>
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-md-3 profil-picture">

@@ -41,16 +41,18 @@ class UserDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/listing", name="user_listing")
+     * @Route("/{addWhat}/listing", name="user_listing")
      * @param UserRepository $userRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param string $addBuddy
+     * @return Response
      */
-    public function userListing(UserRepository $userRepository): Response
+    public function userListing(UserRepository $userRepository, string $addWhat): Response
     {
         $users = $userRepository->findAll();
 
         return $this->render('user/userListing.html.twig', [
             'users' => $users,
+            'addWhat' => $addWhat,
         ]);
     }
 

@@ -18,7 +18,7 @@
             {% else %}
             <a class="nav-item nav-link mx-2" href="">DOCUMENTS</a>
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'user_listing' %} active {% endif %}"
-               href="{{ path('user_listing') }}">MEMBRES</a>
+               href="{{ path('user_listing', {'addWhat': 'nothing'}) }}">MEMBRES</a>
             <a class="nav-item nav-link py-auto {% if app.request.attributes.get("_route") == 'user_dashboard' %} active {% endif %}"
                href="{{ path('user_dashboard') }}">
                 <i class="fas fa-user-circle"></i>

@@ -57,8 +57,8 @@
                             {% if not buddy %}
                                 <a data-toggle="tooltip"
                                    data-placement="right"
-                                   title=" Ajouter un filleul "
-                                   href="{{ path('user_listing') }}">
+                                   title=" Ajouter un parrain "
+                                   href="{{ path('user_listing', {'addWhat': 'buddy'}) }}">
                                     <i class="fas fa-plus-circle float-right"></i>
                                 </a>
                             {% endif %}
@@ -126,7 +126,7 @@
                             <a data-toggle="tooltip"
                                data-placement="right"
                                title=" Ajouter un filleul "
-                               href="{{ path('user_listing') }}">
+                               href="{{ path('user_listing', {'addWhat': 'godchild'}) }}">
                                 <i class="fas fa-plus-circle float-right"></i>
                             </a>
                         </div>
