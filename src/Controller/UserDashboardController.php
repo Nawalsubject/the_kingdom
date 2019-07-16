@@ -20,11 +20,13 @@ class UserDashboardController extends AbstractController
      */
     public function index(): Response
     {
+
         $user = $this->getUser();
 
         $buddy = $user->getBuddy();
 
         $godChildren = $user->getGodChildren();
+
 
         return $this->render('user/index.html.twig', [
             'user' => $user,

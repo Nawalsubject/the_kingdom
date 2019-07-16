@@ -14,7 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
- * @Vich\Uploadable
+ * @Vich\Uploadable()
  */
 class User implements UserInterface
 {
@@ -347,17 +347,11 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @param File|null $imageFile
-     * @throws \Exception
-     */
-    public function setImageFile(?File $imageFile = null): void
+    public function setImageFile(File $imageFile = null)
     {
         $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTime();
         }
     }
@@ -367,13 +361,15 @@ class User implements UserInterface
         return $this->imageFile;
     }
 
-    public function setImageName(?string $imageName): void
-    {
-        $this->imageName = $imageName;
-    }
-
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
     }
 }
