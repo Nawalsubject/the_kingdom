@@ -3,10 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserInformationType;
 use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/user")
@@ -91,4 +96,45 @@ class UserDashboardController extends AbstractController
 
         return $this->redirectToRoute('user_dashboard');
     }
+
+    /**
+     * @Route("/{id}/user-edit", name="user_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param User $user
+     * @return Response
+     * @throws \Exception
+     */
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        $form = $this->createForm(UserInformationType::class, $user);
+        $form->handleRequest($request);
+        $oldPassword = $form->get('oldPassword')->getData();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ( empty($oldPassword) ) {
+                $this->getDoctrine()->getManager()->flush();
+                $user->setImageFile(null);
+
+                $this->addFlash('success', 'Vos informations ont bien été modifiés.');
+                return $this->redirectToRoute('user_dashboard');
+            }
+            if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
+                $newEncodedPassword = $passwordEncoder->encodePassword($user, $form->get('plainPassword')->getData());
+                $user->setPassword($newEncodedPassword);
+                $this->getDoctrine()->getManager()->flush();
+                $user->setImageFile(null);
+
+                $this->addFlash('success', 'Vos informations ont bien été modifiés.');
+                return $this->redirectToRoute('user_dashboard');
+            }
+
+            $form->addError(new FormError('Ancien mot de passe incorrect'));
+        }
+
+        return $this->render('user/editUserInformation.html.twig', [
+            'user' => $user,
+            'userInformationForm' => $form->createView(),
+        ]);
+    }
+
 }

@@ -15,10 +15,11 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class RegistrationFormType extends AbstractType
+class UserInformationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -102,32 +103,43 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Cellule Royaumienne',
                 'label_attr' => ['class' => 'col-sm-12'],
             ])
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'label' => 'Photo de profil',
+                'label_attr' => ['class' => 'col-sm-12 custom-file'],
+                'allow_delete' => false,
+                'download_link' => false,
+            ])
+            ->add('oldPassword', PasswordType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Ancien mot de passe',
+                'label_attr' => ['class' => 'col-md-12'],
+                'attr' => ['placeholder' => 'Votre ancien mot de passe'],
+                'invalid_message' => 'Veuillez entrer votre ancien mot de passe.',
+            ])
+            ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Mot de passe',
-                    'label_attr' => ['class' => 'col-sm-12'],
-                    'attr' => ['placeholder' => 'Mot de passe'],
+                'required' => false,
+                'first_options' => ['label' => 'Nouveau mot de passe',
+                    'label_attr' => ['class' => 'col-md-12'],
+                    'attr' => ['placeholder' => 'Votre mot de passe', 'class' => 'my-1'],
                 ],
-                'second_options' => ['label' => 'Entre à nouveau ton mot de passe',
-                    'label_attr' => ['class' => 'col-sm-12'],
-                    'attr' => ['placeholder' => 'Confirme ton mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre nouveau mot de passe',
+                    'label_attr' => ['class' => 'col-md-12'],
+                    'attr' => ['placeholder' => 'Confirmez votre mot de passe', 'class' => 'my-1'],
                 ],
-                'invalid_message' => 'Les mots de passe ne correspondent pas',
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+                'invalid_message' => 'Les mots de passe ne sont pas identiques.',
                 'mapped' => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Saisis un mot de passe.',
-                    ]),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Ton mot de passe doit contenir au minimum {{ limit }} caractères',
+                        'minMessage' => 'Votre mot de passe doit contenir au minimum {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
-            ]);
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

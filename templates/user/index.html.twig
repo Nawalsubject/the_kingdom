@@ -8,12 +8,18 @@
 
         <div class="container-fluid">
 
-            <div class="row mx-auto">
+            <div class="row mx-auto justify-content-center">
 
                 <div class="col-lg-6">
                     <div class="card card-profile mb-5">
                         <h3 class="card-header">
                             Mon profil
+                            <a data-toggle="tooltip"
+                               data-placement="right"
+                               title=" Éditer son profil "
+                               href="{{ path('user_edit', {'id': user.id}) }}">
+                                <i class="fas fa-edit float-right"></i>
+                            </a>
                         </h3>
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-3 profil-picture">
@@ -44,8 +50,8 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="card-buddy mb-5">
+                <div class="col-lg-5">
+                    <div class="card card-buddy mx-auto mb-5">
                         <div class="card-header">
                             Mon parrain
                             {% if not buddy %}
@@ -113,8 +119,8 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="card-godchild mb-5">
+                <div class="col-lg-5">
+                    <div class="card card-godchild mx-auto mb-5">
                         <div class="card-header">
                             Mes filleuls
                             <a data-toggle="tooltip"
