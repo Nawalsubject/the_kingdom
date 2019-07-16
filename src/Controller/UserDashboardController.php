@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserInformationType;
+use App\Form\UserJobsType;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -136,6 +137,30 @@ class UserDashboardController extends AbstractController
         return $this->render('user/editUserInformation.html.twig', [
             'user' => $user,
             'userInformationForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/jobs-edition", name="user_jobs_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param User $user
+     * @return Response
+     */
+    public function editJobs(Request $request, User $user): Response
+    {
+        $form = $this->createForm(UserJobsType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success' , 'Vos métiers ont bien été modifés.');
+            return $this->redirectToRoute('user_dashboard');
+        }
+
+        return $this->render('user/editUserJobs.html.twig', [
+            'user' => $user,
+            'jobsForm' => $form->createView(),
         ]);
     }
 

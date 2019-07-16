@@ -53,11 +53,6 @@ class Trade
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="trades")
-     */
-    private $users;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Job", mappedBy="trade")
      */
     private $jobs;
@@ -107,34 +102,6 @@ class Trade
     public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addTrade($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            $user->removeTrade($this);
-        }
 
         return $this;
     }

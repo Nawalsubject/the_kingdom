@@ -1,0 +1,41 @@
+{% extends 'userLayout.html.twig' %}
+
+{% block title %}Modification des métiers {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <section class="user-jobs-edit">
+
+        <div class="container pb-5">
+
+            <h1 class="text-center mb-4">Modification des métiers</h1>
+
+            <div class="card mx-auto">
+                {{ form_start(jobsForm) }}
+                <div class="card-body justify-content-center">
+                    <div class="row">
+
+
+                        {% set trade = '' %}
+                        {% for job in jobsForm.jobs %}
+                            <div class="col-12">
+                                {% if job.vars.attr.trade != trade %}
+                                    <h5>
+                                        {{ trade }}
+                                    </h5>
+                                    {% set trade = job.vars.attr.trade %}
+                                {% endif %}
+                                {{ form_widget(job) }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <button class="btn btn-form col-10 col-md-4 mb-3 py-3">Valider</button>
+                </div>
+                {{ form_end(jobsForm) }}
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

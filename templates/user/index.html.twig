@@ -103,7 +103,7 @@
                             <a data-toggle="tooltip"
                                data-placement="right"
                                title=" Modifier mes métiers "
-                               href="">
+                               href="{{ path('user_jobs_edit', {'id': user.id}) }}">
                                 <i class="fas fa-edit float-right"></i>
                             </a>
                         </h3>
@@ -112,13 +112,19 @@
                                 <ul>
                                     {% for job in user.jobs %}
 
-                                        <h5 class="card-title mt-3">
-                                            <img src="{% if job.trade.imageName %}
+                                        {% if job.trade %}
+                                            <h5 class="card-title mt-3">
+                                                <img src="{% if job.trade.imageName %}
                                                                 {{ vich_uploader_asset(job.trade, 'imageFile') }}
                                                             {% else %}
                                                                 {{ asset('build/logo_logistic.png') }}
                                                             {% endif %}"
-                                                 alt="{{ job.trade.name }}">{{ job.trade.name }}</h5>
+                                                     alt="{{ job.trade.name }}">{{ job.trade.name }}</h5>
+                                        {% else %}
+                                            <h5 class="card-title mt-3">
+                                                <img src="{{ asset('build/logo_royaume.png') }}"
+                                                     alt="aucun corps de métier">Aucun corps de métier</h5>
+                                        {% endif %}
                                         <li class="card-text">{{ job.name }}</li>
                                     {% endfor %}
                                 </ul>
