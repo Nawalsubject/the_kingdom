@@ -43,7 +43,7 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'Saisis ton nom',
             ])
             ->add('enteredAt', DateType::class, [
-                'label' => 'Date d\'entrée au Royaume :',
+                'label' => 'Année d\'entrée au Royaume :',
                 'required' => true,
                 'data' => new \DateTime(),
                 'attr' => [
@@ -58,7 +58,7 @@ class RegistrationFormType extends AbstractType
                 'model_timezone' => 'Europe/Paris',
             ])
             ->add('knightedAt', DateType::class, [
-                'label' => 'Date d\'adoubement :',
+                'label' => 'Année d\'adoubement :',
                 'required' => false,
                 'data' => null,
                 'attr' => [
