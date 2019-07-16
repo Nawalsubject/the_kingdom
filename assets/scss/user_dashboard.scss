@@ -61,6 +61,11 @@
 .card-trade {
   @include card-dashboard(45rem, 100%);
 
+  i {
+    color: $primary-text-color;
+    font-size: 1.8rem;
+  }
+
   .card-body {
     padding-left: 2rem;
 
