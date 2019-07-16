@@ -13,6 +13,11 @@
 
 .card-profile {
   @include card-profile;
+
+  i {
+    color: $primary-text-color;
+    font-size: 1.8rem;
+  }
 }
 
 .card-buddy {

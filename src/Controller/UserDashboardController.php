@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserInformationType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -89,4 +91,31 @@ class UserDashboardController extends AbstractController
 
         return $this->redirectToRoute('user_dashboard');
     }
+
+    /**
+     * @Route("/edition", name="account_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @return Response
+     */
+    public function edit(Request $request): Response
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(UserInformationType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Vos informations ont bien été modifiées.');
+            return $this->redirectToRoute('app_account');
+        }
+
+        return $this->render('account/edit_account.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
 }
