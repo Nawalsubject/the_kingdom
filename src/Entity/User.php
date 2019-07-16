@@ -75,13 +75,6 @@ class User implements UserInterface
     private $county;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Trade", inversedBy="users")
-     * @Assert\NotBlank(message="Choisis un corps de métier")
-     * @Assert\Count(min="1", minMessage="Choisis au minimum {{ limit }} un corps de métier")
-     */
-    private $trades;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $phone;
@@ -261,23 +254,6 @@ class User implements UserInterface
     public function setCounty(?County $county): self
     {
         $this->county = $county;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Trade[]
-     */
-    public function getTrades(): Collection
-    {
-        return $this->trades;
-    }
-
-    public function addTrade(Trade $trade): self
-    {
-        if (!$this->trades->contains($trade)) {
-            $this->trades[] = $trade;
-        }
 
         return $this;
     }

@@ -78,18 +78,6 @@ class UserInformationType extends AbstractType
                 'label_attr' => ['class' => 'col-sm-12'],
                 'attr' => ['placeholder' => '06123456789'],
             ])
-            ->add('trades', EntityType::class, [
-                'required' => true,
-                'class' => Trade::class,
-                'choice_label' => 'name',
-                'label' => 'Corps de métier',
-                'label_attr' => [
-                    'class' => 'col-sm-12 checkbox-inline',
-                ],
-                'expanded' => true,
-                'multiple' => true,
-                'by_reference' => false,
-            ])
             ->add('email', EmailType::class, [
                 'required' => true,
                 'label_attr' => ['class' => 'col-sm-12'],

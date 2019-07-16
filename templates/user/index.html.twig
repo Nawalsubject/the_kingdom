@@ -101,7 +101,7 @@
                         <h3 class="card-header">
                             Mes Métiers
                         </h3>
-                        <div class="card-body">
+                        <div class="card-body">{#
                             {% if user.trades %}
                                 <ul>
                                     {% for trade in user.trades %}
@@ -114,7 +114,7 @@
                                 </ul>
                             {% else %}
                                 Aucun métier
-                            {% endif %}
+                            {% endif %}#}
                         </div>
                     </div>
                 </div>
