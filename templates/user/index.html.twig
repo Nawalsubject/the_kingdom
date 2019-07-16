@@ -104,12 +104,9 @@
                         <div class="card-body">
                             {% if user.jobs %}
                                 <ul>
-{#                                    {% for trade in user.trades %}
-                                        <h5 class="card-title mt-3"><img src="{{ asset('build/logo_logistic.png') }}"
-                                                                         alt="{{ trade.name }}">{{ trade.name }}</h5>#}
                                         {% for job in user.jobs %}
 
-                                            <h5 class="card-title mt-3"><img src="{{ asset('build/logo_logistic.png') }}"
+                                            <h5 class="card-title mt-3"><img src="{% if buddy.imageName %}{{ vich_uploader_asset(buddy, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
                                                                              alt="{{ job.trade.name }}">{{ job.trade.name }}</h5>
                                             <li class="card-text">{{ job.name }}</li>
                                         {% endfor %}
