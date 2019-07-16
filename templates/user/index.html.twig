@@ -104,12 +104,17 @@
                         <div class="card-body">
                             {% if user.jobs %}
                                 <ul>
-                                        {% for job in user.jobs %}
+                                    {% for job in user.jobs %}
 
-                                            <h5 class="card-title mt-3"><img src="{% if buddy.imageName %}{{ vich_uploader_asset(buddy, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
-                                                                             alt="{{ job.trade.name }}">{{ job.trade.name }}</h5>
-                                            <li class="card-text">{{ job.name }}</li>
-                                        {% endfor %}
+                                        <h5 class="card-title mt-3">
+                                            <img src="{% if job.trade.imageName %}
+                                                                {{ vich_uploader_asset(job.trade, 'imageFile') }}
+                                                            {% else %}
+                                                                {{ asset('build/logo_logistic.png') }}
+                                                            {% endif %}"
+                                                 alt="{{ job.trade.name }}">{{ job.trade.name }}</h5>
+                                        <li class="card-text">{{ job.name }}</li>
+                                    {% endfor %}
                                 </ul>
                             {% else %}
                                 Aucun métier
