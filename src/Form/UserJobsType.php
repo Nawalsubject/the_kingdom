@@ -18,6 +18,7 @@ class UserJobsType extends AbstractType
             ->add('jobs', EntityType::class, [
                 'class' => Job::class,
                 'choice_label' => 'name',
+                'label_attr' => ['class' => 'col-sm-12'],
                 'query_builder' => function (JobRepository $jobRepository) {
                     return $jobRepository->createQueryBuilder('j')
                         ->leftJoin('j.trade', 't')
