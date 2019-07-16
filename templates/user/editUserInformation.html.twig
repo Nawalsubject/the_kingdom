@@ -1,0 +1,72 @@
+{% extends 'userLayout.html.twig' %}
+
+{% block title %}Modification du profil {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <section class="user_edit">
+
+        <div class="jumbotron">
+            <div class="container-fluid">
+            </div>
+        </div>
+
+            <div class="container pb-5">
+
+                <h1 class="text-center mb-4">Modification du profil</h1>
+
+                <div class="card mx-auto">
+                    {{ form_start(userInformationForm) }}
+                    <div class="card-body justify-content-center">
+                        <div class="row">
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.firstname) }}
+                                {{ form_widget(userInformationForm.firstname) }}
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.lastname) }}
+                                {{ form_widget(userInformationForm.lastname) }}
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.phone) }}
+                                {{ form_widget(userInformationForm.phone) }}
+
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.email) }}
+                                {{ form_widget(userInformationForm.email) }}
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.enteredAt) }}
+                                {{ form_widget(userInformationForm.enteredAt) }}
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.knightedAt) }}
+                                {{ form_widget(userInformationForm.knightedAt) }}
+                            </div>
+                            <div class="col-12 py-3">
+                                {{ form_label(userInformationForm.imageFile) }}
+                                {{ form_widget(userInformationForm.imageFile) }}
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.county) }}
+                                {{ form_widget(userInformationForm.county) }}
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.trades) }}
+                                {{ form_widget(userInformationForm.trades) }}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="ml-4"><span class="required"></span>Champs obligatoires </p>
+
+                    <div class="row justify-content-center">
+                        <button class="btn btn-form col-10 col-md-4 mb-3 py-3">Valider</button>
+                    </div>
+                    {{ form_end(userInformationForm) }}
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

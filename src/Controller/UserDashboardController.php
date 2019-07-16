@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserInformationType;
 use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -93,28 +94,28 @@ class UserDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/edition", name="account_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_USER")
+     * @Route("/{id}/user-edit", name="user_edit", methods={"GET","POST"})
      * @param Request $request
+     * @param User $user
      * @return Response
+     * @throws \Exception
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request, User $user): Response
     {
-        $user = $this->getUser();
-
         $form = $this->createForm(UserInformationType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $user->setImageFile(null);
 
-            $this->addFlash('success', 'Vos informations ont bien été modifiées.');
-            return $this->redirectToRoute('app_account');
+            $this->addFlash('success', 'Vos informations ont bien été modifiés.');
+            return $this->redirectToRoute('user_dashboard');
         }
 
-        return $this->render('account/edit_account.html.twig', [
+        return $this->render('user/editUserInformation.html.twig', [
             'user' => $user,
-            'form' => $form->createView(),
+            'userInformationForm' => $form->createView(),
         ]);
     }
 

@@ -104,7 +104,6 @@ class User implements UserInterface
      *     mimeTypesMessage="Veuillez choisir un fichier de type .jpg, .jpeg, .png ou .gif",
      *     maxSizeMessage="Veuillez choisir un fichier de 1.9Mo maximum"
      *  )
-     * @var File
      */
     private $imageFile;
 
