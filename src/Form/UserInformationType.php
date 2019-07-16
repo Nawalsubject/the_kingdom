@@ -9,10 +9,13 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -107,7 +110,36 @@ class UserInformationType extends AbstractType
                 'allow_delete' => false,
                 'download_link' => false,
             ])
-        ;
+            ->add('oldPassword', PasswordType::class, [
+                'mapped' => false,
+                'required' => false,
+                'label' => 'Ancien mot de passe',
+                'label_attr' => ['class' => 'col-md-12'],
+                'attr' => ['placeholder' => 'Votre ancien mot de passe'],
+                'invalid_message' => 'Veuillez entrer votre ancien mot de passe.',
+            ])
+            ->add('plainPassword', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'required' => false,
+                'first_options' => ['label' => 'Nouveau mot de passe',
+                    'label_attr' => ['class' => 'col-md-12'],
+                    'attr' => ['placeholder' => 'Votre mot de passe', 'class' => 'my-1'],
+                ],
+                'second_options' => ['label' => 'Confirmez votre nouveau mot de passe',
+                    'label_attr' => ['class' => 'col-md-12'],
+                    'attr' => ['placeholder' => 'Confirmez votre mot de passe', 'class' => 'my-1'],
+                ],
+                'invalid_message' => 'Les mots de passe ne sont pas identiques.',
+                'mapped' => false,
+                'constraints' => [
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => 'Votre mot de passe doit contenir au minimum {{ limit }} caractères',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ]),
+                ],
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -12,6 +12,7 @@
 
                 <div class="card mx-auto">
                     {{ form_start(userInformationForm) }}
+                    {{ form_errors(userInformationForm) }}
                     <div class="card-body justify-content-center">
                         <div class="row">
                             <div class="col-12 col-md-6 py-3">
@@ -39,10 +40,6 @@
                                 {{ form_label(userInformationForm.knightedAt) }}
                                 {{ form_widget(userInformationForm.knightedAt) }}
                             </div>
-                            <div class="col-12 py-3 text-center">
-                                {{ form_label(userInformationForm.imageFile) }}
-                                {{ form_widget(userInformationForm.imageFile) }}
-                            </div>
                             <div class="col-12 col-md-6 py-3">
                                 {{ form_label(userInformationForm.county) }}
                                 {{ form_widget(userInformationForm.county) }}
@@ -50,6 +47,22 @@
                             <div class="col-12 col-md-6 py-3">
                                 {{ form_label(userInformationForm.trades) }}
                                 {{ form_widget(userInformationForm.trades) }}
+                            </div>
+                            <div class="col-12 py-3">
+                                {{ form_label(userInformationForm.oldPassword) }}
+                                {{ form_widget(userInformationForm.oldPassword) }}
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.plainPassword.first) }}
+                                {{ form_widget(userInformationForm.plainPassword.first) }}
+                            </div>
+                            <div class="col-12 col-md-6 py-3">
+                                {{ form_label(userInformationForm.plainPassword.second) }}
+                                {{ form_widget(userInformationForm.plainPassword.second) }}
+                            </div>
+                            <div class="col-12 py-3 text-center">
+                                {{ form_label(userInformationForm.imageFile) }}
+                                {{ form_widget(userInformationForm.imageFile) }}
                             </div>
                         </div>
                     </div>

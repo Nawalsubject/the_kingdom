@@ -1,7 +1,7 @@
 .user-dashboard-section {
   background-color: $section-color-light;
   padding-top: 15vh;
-  padding-bottom: 10vh;
+  padding-bottom: 20vh;
 
   .container-fluid {
     width: 80%;
@@ -134,6 +134,15 @@
   background-color: $section-color-light;
   padding-top: 10vh;
   padding-bottom: 5vh;
+
+  .form-error-icon {
+    background-color: $primary-color;
+  }
+
+  .alert {
+    margin-top: 15px;
+    margin-bottom: unset;
+  }
 
   h1 {
     color: $primary-color;
