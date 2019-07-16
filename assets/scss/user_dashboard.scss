@@ -1,6 +1,6 @@
 .user-dashboard-section {
   background-color: $section-color-light;
-  padding-top: 20vh;
+  padding-top: 15vh;
   padding-bottom: 10vh;
 
   .container-fluid {
@@ -126,6 +126,36 @@
     p {
       font-size: 0.7rem;
       margin: 0 0 5px 0;
+    }
+  }
+}
+
+.user_edit {
+  background-color: $section-color-light;
+  padding-top: 10vh;
+  padding-bottom: 5vh;
+
+  h1 {
+    color: $primary-color;
+  }
+
+  .card {
+    @include card-form(50rem, 100%);
+
+    .btn-form {
+      background-color: $btn-form-controller;
+      color: $primary-text-color;
+      font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+    }
+
+    img {
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 4px 4px $section-color-light;
+      width: 9rem;
+      height: 9rem;
+      transform: translate(X, -50%);
+      margin-top: 2rem;
     }
   }
 }

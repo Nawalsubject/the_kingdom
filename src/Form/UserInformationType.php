@@ -29,14 +29,14 @@ class UserInformationType extends AbstractType
             ->add('firstname', TextType::class, [
                 'required' => true,
                 'label' => 'Prénom',
-                'label_attr' => ['class' => 'col-md-12'],
+                'label_attr' => ['class' => 'col-sm-12'],
                 'attr' => ['placeholder' => 'Thierry'],
                 'invalid_message' => 'Saisis ton prénom',
             ])
             ->add('lastname', TextType::class, [
                 'required' => true,
                 'label' => 'Nom',
-                'label_attr' => ['class' => 'col-md-12'],
+                'label_attr' => ['class' => 'col-sm-12'],
                 'attr' => ['placeholder' => 'Gomedj'],
                 'invalid_message' => 'Saisis ton nom',
             ])
@@ -49,7 +49,7 @@ class UserInformationType extends AbstractType
                     'min' => $dateMin,
                     'max' => $dateMax,
                 ],
-                'label_attr' => ['class' => 'col-md-12'],
+                'label_attr' => ['class' => 'col-sm-12'],
                 'constraints' => new NotBlank(['message' => 'Champ obligatoire']),
                 'widget' => 'single_text',
                 'format' => 'yyyy',
@@ -64,7 +64,7 @@ class UserInformationType extends AbstractType
                     'min' => $dateMin,
                     'max' => $dateMax,
                 ],
-                'label_attr' => ['class' => 'col-md-12'],
+                'label_attr' => ['class' => 'col-sm-12'],
                 'widget' => 'single_text',
                 'format' => 'yyyy',
                 'model_timezone' => 'Europe/Paris',
@@ -72,7 +72,7 @@ class UserInformationType extends AbstractType
             ->add('phone', TelType::class, [
                 'required' => false,
                 'label' => 'Téléphone',
-                'label_attr' => ['class' => 'col-md-12'],
+                'label_attr' => ['class' => 'col-sm-12'],
                 'attr' => ['placeholder' => '06123456789'],
             ])
             ->add('trades', EntityType::class, [
@@ -81,7 +81,7 @@ class UserInformationType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Corps de métier',
                 'label_attr' => [
-                    'class' => 'col-md-12 checkbox-inline',
+                    'class' => 'col-sm-12 checkbox-inline',
                 ],
                 'expanded' => true,
                 'multiple' => true,
@@ -89,7 +89,7 @@ class UserInformationType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
-                'label_attr' => ['class' => 'col-md-12'],
+                'label_attr' => ['class' => 'col-sm-12'],
                 'attr' => ['placeholder' => 'thierry.gomedj@gmail.com'],
             ])
             ->add('county', EntityType::class, [
@@ -98,12 +98,12 @@ class UserInformationType extends AbstractType
                 'invalid_message' => 'Veuillez choisir un cellule',
                 'required' => true,
                 'label' => 'Cellule Royaumienne',
-                'label_attr' => ['class' => 'col-md-12'],
+                'label_attr' => ['class' => 'col-sm-12'],
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
                 'label' => 'Photo de profil',
-                'label_attr' => ['class' => 'col-md-12 custom-file'],
+                'label_attr' => ['class' => 'col-sm-12 custom-file'],
                 'allow_delete' => false,
                 'download_link' => false,
             ])

@@ -21,7 +21,7 @@ $(document).ready(function() {
 // jquery for change navbar color on scroll
 
 function checkScroll() {
-    var startY = $('.navbar').height(); //The point where the navbar changes in px
+    let startY = $('.navbar').height(); //The point where the navbar changes in px
 
     if ($(window).scrollTop() > startY) {
         $('.navbar').addClass("bg-custom");
@@ -35,3 +35,12 @@ if ($('.navbar').length > 0) {
         checkScroll();
     });
 }
+
+// function to see file chosen with vich_uploader
+
+$('#user_information_imageFile_file').on('change', function () {
+    //get the file name
+    let fileName = $(this).val();
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(fileName);
+});
