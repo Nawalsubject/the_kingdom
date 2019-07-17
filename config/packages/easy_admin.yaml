@@ -33,21 +33,8 @@ easy_admin:
                 ]
 
       label: 'Royaumiens'
-      new:
-        fields:
-          - { property: 'firstname', label: 'Prénom'}
-          - { property: 'lastname', label: 'Nom'}
-          - { property: 'enteredAt', label: "Année d'entrée au royaume", type_options: { widget: 'single_text' } }
-          - { property: 'buddy', label: 'Parrain',type: 'entity', type_options: {class: App\Entity\User}}
-          - { property: 'godchild', label: 'Filleul',type: 'easyadmin_autocomplete', type_options: {class: App\Entity\User, multiple: true}}
-          - { property: 'knightedAt', label: "Année d'adoubement", type_options: { widget: 'single_text' }}
-          - { property: 'county', label: 'Cellule',type: 'entity', type_options: {class: App\Entity\County}}
-          - { property: 'phone', label: 'Téléphone', type: 'tel' }
-          - { property: 'email', label: 'Email', type: 'email' }
-          - { property: 'jobs', label: 'Métiers',type: 'entity', type_options: {class: App\Entity\Job}}
-          - { property: 'password', type: 'repeated', type_options: { type: 'Symfony\Component\Form\Extension\Core\Type\PasswordType', invalid_message: 'Les mots de passe ne correspondent pas', first_options: { label: 'Mot de passe' }, second_options: { label: 'Confirmez le mot de passe' }, required: false } }
-          - { property: 'imageFile', label: 'Photo de profil', type: 'vich_image' }
-      edit:
+      disabled_actions: ['new']
+      form:
         fields:
           - { property: 'firstname', label: 'Prénom'}
           - { property: 'lastname', label: 'Nom'}
