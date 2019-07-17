@@ -26,7 +26,7 @@ class Document
     private $fileName;
 
     /**
-     * @Vich\UploadableField(mapping="document", fileNameProperty="fileName")
+     * @Vich\UploadableField(mapping="document", fileNameProperty="fileName", size="fileSize", mimeType="fileMimeType")
      * @Assert\File(
      *     mimeTypes={ "image/jpg", "image/png", "image/jpeg", "image/gif", "application/pdf" },
      *     maxSize="2M",
@@ -42,6 +42,20 @@ class Document
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    private $fileSize;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    private $fileMimeType;
 
     public function getId(): ?int
     {
@@ -72,5 +86,25 @@ class Document
         $this->fileName = $fileName;
 
         return $this;
+    }
+
+    public function setImageSize(?int $fileSize): void
+    {
+        $this->fileSize = $fileSize;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->fileSize;
+    }
+
+    public function getFileMimeType(): ?string
+    {
+        return $this->fileMimeType;
+    }
+
+    public function setFileMimeType(?string $fileMimeType): void
+    {
+        $this->fileMimeType = $fileMimeType;
     }
 }

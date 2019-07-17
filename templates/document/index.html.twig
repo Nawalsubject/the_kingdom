@@ -1,0 +1,30 @@
+{% extends 'userLayout.html.twig' %}
+
+{% block title %}Documents {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <section class="document-section">
+        <div class="container-fluid">
+
+            <div class="row mx-auto justify-content-center">
+
+                {% for document in documents %}
+
+                    {{ dump(document) }}
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ vich_uploader_asset(document, 'file') }}" class="card-img-top"
+                             alt="{{ document.fileName }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ document.fileName }}</h5>
+                            <a href="documents/{{ document.fileName }}" target="_blank" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
