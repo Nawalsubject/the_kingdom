@@ -57,6 +57,11 @@ class Document
      */
     private $fileMimeType;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\FileCategory", inversedBy="documents")
+     */
+    private $fileCategory;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,5 +111,17 @@ class Document
     public function setFileMimeType(?string $fileMimeType): void
     {
         $this->fileMimeType = $fileMimeType;
+    }
+
+    public function getFileCategory(): ?FileCategory
+    {
+        return $this->fileCategory;
+    }
+
+    public function setFileCategory(?FileCategory $fileCategory): self
+    {
+        $this->fileCategory = $fileCategory;
+
+        return $this;
     }
 }
