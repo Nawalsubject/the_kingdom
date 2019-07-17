@@ -295,7 +295,7 @@ class User implements UserInterface
     /**
      * @return Collection|self[]
      */
-    public function getGodchild(): Collection
+    public function getGodchildren(): Collection
     {
         return $this->godChildren;
     }

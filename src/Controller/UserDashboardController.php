@@ -32,7 +32,7 @@ class UserDashboardController extends AbstractController
 
         $buddy = $user->getBuddy();
 
-        $godChildren = $user->getGodChild();
+        $godChildren = $user->getGodchildren();
 
         $jobs = $jobRepository->findByUserWithTrades($user->getId());
 
