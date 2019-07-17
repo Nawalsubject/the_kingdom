@@ -1,0 +1,9 @@
+easy_admin:
+  entities:
+
+    County:
+      class: App\Entity\County
+      label: 'Cellules'
+      form:
+        fields:
+          - { property: 'name', label: 'Nom'}

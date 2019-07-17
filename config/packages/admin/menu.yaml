@@ -1,6 +1,7 @@
 easy_admin:
   design:
     menu:
-      - {entity: 'User', label: 'Royaumien', icon: 'user'}
+      - {entity: 'User', label: 'Royaumiens', icon: 'user'}
       - {entity: 'Trade', label: 'Corps de métier', icon: 'hammer'}
-      - {entity: 'Job', label: 'Métier', icon: 'hammer'}
+      - {entity: 'Job', label: 'Métiers', icon: 'hammer'}
+      - {entity: 'County', label: 'Cellules', icon: 'fort-awesome'}
