@@ -9,6 +9,11 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarKingdom">
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="navbar-nav">
+                <a class="nav-item nav-link admin-link text-left" href="{{ path('easyadmin') }}">ADMINISTRATION</a>
+            </div>
+        {% endif %}
         <div class="navbar-nav py-0 ml-auto text-right">
             {% if not app.user %}
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_login' %} active {% endif %}"
