@@ -58,6 +58,11 @@ class User implements UserInterface
     private $lastname;
 
     /**
+     * @var string
+     */
+    private $fullName;
+
+    /**
      * @ORM\Column(type="date")
      * @Assert\NotNull(message="Saisis la date de ton entrée au royaume")
      */
@@ -121,7 +126,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->trades = new ArrayCollection();
         $this->godChildren = new ArrayCollection();
         $this->jobs = new ArrayCollection();
     }
@@ -264,15 +268,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeTrade(Trade $trade): self
-    {
-        if ($this->trades->contains($trade)) {
-            $this->trades->removeElement($trade);
-        }
-
-        return $this;
-    }
-
     public function getPhone(): ?string
     {
         return $this->phone;
@@ -300,7 +295,7 @@ class User implements UserInterface
     /**
      * @return Collection|self[]
      */
-    public function getGodchildren(): Collection
+    public function getGodchild(): Collection
     {
         return $this->godChildren;
     }
@@ -378,5 +373,18 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function __toString()
+    {
+        return $this->getFullName();
     }
 }

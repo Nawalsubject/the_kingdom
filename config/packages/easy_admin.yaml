@@ -1,6 +1,77 @@
-#easy_admin:
-#    entities:
-#        # List the entity class name you want to manage
-#        - App\Entity\Product
-#        - App\Entity\Category
-#        - App\Entity\User
+easy_admin:
+
+  formats:
+    date:     'd/m/Y'
+    time:     'H:i'
+    datetime: 'd/m/Y H:i:s'
+
+  user:
+    name_property_path: 'fullName'
+
+  design:
+    brand_color: '#bd8d4c'
+    assets:
+      css:
+        - 'public/build/app.css'
+      favicon: '/assets/images/logo_royaume.png'
+
+  site_name: 'Le Royaume'
+
+  entities:
+
+    User:
+      class: App\Entity\User
+      list:
+        fields: ['id',
+                 { property: 'firstname', label: 'Prénom' },
+                 { property: 'lastname', label: 'Nom' },
+                 { property: 'buddy', label: 'Parrain'},
+                 { property: 'enteredAt', label: "Année d'entrée au royaume" },
+                 { property: 'knightedAt', label: "Année d'adoubement" },
+                 { property: 'county', label: 'Celulle' },
+                 { property: 'phone', label: 'Téléphone' },
+                ]
+
+      label: 'Royaumiens'
+      new:
+        fields:
+          - { property: 'firstname', label: 'Prénom'}
+          - { property: 'lastname', label: 'Nom'}
+          - { property: 'enteredAt', label: "Année d'entrée au royaume", type_options: { widget: 'single_text' } }
+          - { property: 'buddy', label: 'Parrain',type: 'entity', type_options: {class: App\Entity\User}}
+          - { property: 'godchild', label: 'Filleul',type: 'easyadmin_autocomplete', type_options: {class: App\Entity\User, multiple: true}}
+          - { property: 'knightedAt', label: "Année d'adoubement", type_options: { widget: 'single_text' }}
+          - { property: 'county', label: 'Cellule',type: 'entity', type_options: {class: App\Entity\County}}
+          - { property: 'phone', label: 'Téléphone', type: 'tel' }
+          - { property: 'email', label: 'Email', type: 'email' }
+          - { property: 'jobs', label: 'Métiers',type: 'entity', type_options: {class: App\Entity\Job}}
+          - { property: 'password', type: 'repeated', type_options: { type: 'Symfony\Component\Form\Extension\Core\Type\PasswordType', invalid_message: 'Les mots de passe ne correspondent pas', first_options: { label: 'Mot de passe' }, second_options: { label: 'Confirmez le mot de passe' }, required: false } }
+          - { property: 'imageFile', label: 'Photo de profil', type: 'vich_image' }
+      edit:
+        fields:
+          - { property: 'firstname', label: 'Prénom'}
+          - { property: 'lastname', label: 'Nom'}
+          - { property: 'enteredAt', label: "Année d'entrée au royaume", type_options: { widget: 'single_text' } }
+          - { property: 'buddy', label: 'Parrain',type: 'entity', type_options: {class: App\Entity\User}}
+          - { property: 'godchild', label: 'Filleul',type: 'easyadmin_autocomplete', type_options: {class: App\Entity\User, multiple: true}}
+          - { property: 'knightedAt', label: "Année d'adoubement", type_options: { widget: 'single_text' }}
+          - { property: 'county', label: 'Cellule',type: 'entity', type_options: {class: App\Entity\County}}
+          - { property: 'phone', label: 'Téléphone', type: 'tel' }
+          - { property: 'email', label: 'Email', type: 'email' }
+          - { property: 'jobs', label: 'Métiers',type: 'entity', type_options: {class: App\Entity\Job}}
+          - { property: 'imageFile', label: 'Photo de profil', type: 'vich_image' }
+
+    Trade:
+      class: App\Entity\Trade
+      form:
+        fields:
+          - { property: 'imageFile', type: 'vich_image' }
+
+    Job:
+      class: App\Entity\Job
+
+    Document:
+      class: App\Entity\Document
+      form:
+        fields:
+          - { property: 'file', type: 'vich_image' }
