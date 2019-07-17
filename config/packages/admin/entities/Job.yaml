@@ -1,0 +1,11 @@
+easy_admin:
+  entities:
+
+    Job:
+      class: App\Entity\Job
+      label: 'Métiers'
+      form:
+        fields:
+          - { property: 'name', label: 'Nom'}
+          - { property: 'description', label: 'Description'}
+          - { property: 'trade', label: 'Corps de métier', type: 'entity', type_options: {class: App\Entity\Trade} }

@@ -3,7 +3,7 @@ easy_admin:
 
     Trade:
       class: App\Entity\Trade
-      label: 'Royaumiens'
+      label: 'Corps de métier'
       form:
         fields:
           - { property: 'name', label: 'Nom'}

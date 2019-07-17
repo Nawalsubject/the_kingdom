@@ -3,3 +3,4 @@ easy_admin:
     menu:
       - {entity: 'User', label: 'Royaumien', icon: 'user'}
       - {entity: 'Trade', label: 'Corps de métier', icon: 'hammer'}
+      - {entity: 'Job', label: 'Métier', icon: 'hammer'}
