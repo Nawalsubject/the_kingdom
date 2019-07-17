@@ -1,0 +1,5 @@
+easy_admin:
+  design:
+    menu:
+      - {entity: 'User', label: 'Royaumien', icon: 'user'}
+      - {entity: 'Trade', label: 'Corps de métier', icon: 'hammer'}

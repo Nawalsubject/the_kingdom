@@ -9,7 +9,6 @@ vich_uploader:
         trade_image:
             uri_prefix: /images/trades
             upload_destination: '%kernel.project_dir%/public/images/trades'
-            namer: Vich\UploaderBundle\Naming\UniqidNamer
         document:
             uri_prefix: /documents
             upload_destination: '%kernel.project_dir%/public/documents'

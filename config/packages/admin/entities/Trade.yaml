@@ -1,0 +1,10 @@
+easy_admin:
+  entities:
+
+    Trade:
+      class: App\Entity\Trade
+      label: 'Royaumiens'
+      form:
+        fields:
+          - { property: 'name', label: 'Nom'}
+          - { property: 'imageFile', label: 'Logo', type: 'vich_image' }

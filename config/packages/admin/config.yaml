@@ -1,0 +1,14 @@
+easy_admin:
+
+  formats:
+    date:     'd/m/Y'
+    time:     'H:i'
+    datetime: 'd/m/Y H:i:s'
+
+  user:
+    name_property_path: 'fullName'
+
+  design:
+    brand_color: '#bd8d4c'
+
+  site_name: 'Le Royaume'

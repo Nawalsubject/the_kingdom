@@ -1,0 +1,29 @@
+easy_admin:
+  entities:
+
+    User:
+      class: App\Entity\User
+      list:
+        fields: ['id',
+                 { property: 'firstname', label: 'Prénom' },
+                 { property: 'lastname', label: 'Nom' },
+                 { property: 'buddy', label: 'Parrain'},
+                 { property: 'enteredAt', label: "Année d'entrée au royaume" },
+                 { property: 'knightedAt', label: "Année d'adoubement" },
+                 { property: 'county', label: 'Celulle' },
+                 { property: 'phone', label: 'Téléphone' }]
+      label: 'Royaumiens'
+      disabled_actions: ['new']
+      form:
+        fields:
+          - { property: 'firstname', label: 'Prénom'}
+          - { property: 'lastname', label: 'Nom'}
+          - { property: 'enteredAt', label: "Année d'entrée au royaume", type_options: { widget: 'single_text' } }
+          - { property: 'buddy', label: 'Parrain',type: 'entity', type_options: {class: App\Entity\User}}
+          - { property: 'godchild', label: 'Filleul',type: 'easyadmin_autocomplete', type_options: {class: App\Entity\User, multiple: true}}
+          - { property: 'knightedAt', label: "Année d'adoubement", type_options: { widget: 'single_text' }}
+          - { property: 'county', label: 'Cellule',type: 'entity', type_options: {class: App\Entity\County}}
+          - { property: 'phone', label: 'Téléphone', type: 'tel' }
+          - { property: 'email', label: 'Email', type: 'email' }
+          - { property: 'jobs', label: 'Métiers',type: 'entity', type_options: {class: App\Entity\Job}}
+          - { property: 'imageFile', label: 'Photo de profil', type: 'vich_image' }
