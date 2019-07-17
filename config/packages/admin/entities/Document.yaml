@@ -1,0 +1,11 @@
+easy_admin:
+  entities:
+
+    Document:
+      class: App\Entity\Document
+      list:
+        fields: ['id', { property: 'fileName', label: 'Fichier' } ]
+      label: 'Documents'
+      form:
+        fields:
+          - { property: 'file', label: 'Document', type: 'vich_file' }

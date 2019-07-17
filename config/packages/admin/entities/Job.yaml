@@ -3,6 +3,12 @@ easy_admin:
 
     Job:
       class: App\Entity\Job
+      list:
+        fields: ['id',
+                 { property: 'name', label: 'Nom' },
+                 { property: 'description', label: 'Description' },
+                 { property: 'trade', label: 'Corps de métier'},
+                 { property: 'users', label: "Royaumiens" },]
       label: 'Métiers'
       form:
         fields:

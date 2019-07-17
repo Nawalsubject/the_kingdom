@@ -3,6 +3,10 @@ easy_admin:
 
     Trade:
       class: App\Entity\Trade
+      list:
+        fields: ['id',
+                 { property: 'name', label: 'Nom' },
+                 { property: 'imageName', label: 'Logo' },]
       label: 'Corps de métier'
       form:
         fields:

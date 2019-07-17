@@ -5,8 +5,8 @@ easy_admin:
       class: App\Entity\User
       list:
         fields: ['id',
-                 { property: 'firstname', label: 'Prénom' },
-                 { property: 'lastname', label: 'Nom' },
+                 { property: 'fullname', label: 'Prénom/nom' },
+                 { property: 'email', label: 'Email' },
                  { property: 'buddy', label: 'Parrain'},
                  { property: 'enteredAt', label: "Année d'entrée au royaume" },
                  { property: 'knightedAt', label: "Année d'adoubement" },

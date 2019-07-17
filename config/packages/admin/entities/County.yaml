@@ -3,6 +3,8 @@ easy_admin:
 
     County:
       class: App\Entity\County
+      list:
+        fields: ['id',{ property: 'name', label: 'Nom' }, {property: 'users', label: 'Royaumiens'}]
       label: 'Cellules'
       form:
         fields:

@@ -43,13 +43,6 @@ class Document
      */
     private $updatedAt;
 
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    private $fileSize;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -79,15 +72,5 @@ class Document
         $this->fileName = $fileName;
 
         return $this;
-    }
-
-    public function setFileSize(?int $fileSize): void
-    {
-        $this->fileSize = $fileSize;
-    }
-
-    public function getFileSize(): ?int
-    {
-        return $this->fileSize;
     }
 }
