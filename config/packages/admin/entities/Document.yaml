@@ -4,8 +4,19 @@ easy_admin:
     Document:
       class: App\Entity\Document
       list:
-        fields: ['id', { property: 'fileName', label: 'Fichier' } ,{ property: 'fileSize', label: 'Taille' } ,{ property: 'fileMimeType', label: 'Type' }]
+        fields: ['id',
+                 { property: 'fileName', label: 'Fichier' },
+                 { property: 'fileSize', label: 'Taille (ko)' },
+                 { property: 'fileMimeType', label: 'Type' },
+                 { property: 'fileCategory', label: 'Dossier' }]
+      show:
+        fields: ['id',
+                 { property: 'fileName', label: 'Fichier' },
+                 { property: 'fileSize', label: 'Taille (ko)' },
+                 { property: 'fileMimeType', label: 'Type' },
+                 { property: 'fileCategory', label: 'Dossier' }]
       label: 'Documents'
       form:
         fields:
           - { property: 'file', label: 'Document', type: 'vich_file' }
+          - { property: 'fileCategory', label: 'Dossier', type: 'entity', type_options: {class: App\Entity\FileCategory} }

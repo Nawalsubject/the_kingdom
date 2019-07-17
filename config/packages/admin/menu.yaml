@@ -6,3 +6,4 @@ easy_admin:
       - {entity: 'Job', label: 'Métiers', icon: 'hammer'}
       - {entity: 'County', label: 'Cellules', icon: 'fort-awesome'}
       - {entity: 'Document', label: 'Documents', icon: 'file-alt'}
+      - {entity: 'FileCategory', label: 'Catégories de documents', icon: 'folder'}

@@ -1,0 +1,11 @@
+easy_admin:
+  entities:
+
+    FileCategory:
+      class: App\Entity\FileCategory
+      list:
+        fields: ['id', { property: 'name', label: 'Nom' }, 'documents' ]
+      label: 'Documents'
+      form:
+        fields:
+          - { property: 'name', label: 'Nom' }
