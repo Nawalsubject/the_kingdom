@@ -88,12 +88,12 @@ class Document
         return $this;
     }
 
-    public function setImageSize(?int $fileSize): void
+    public function setFileSize(?int $fileSize): void
     {
         $this->fileSize = $fileSize;
     }
 
-    public function getImageSize(): ?int
+    public function getFileSize(): ?int
     {
         return $this->fileSize;
     }

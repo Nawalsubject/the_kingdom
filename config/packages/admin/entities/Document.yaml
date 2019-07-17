@@ -4,7 +4,7 @@ easy_admin:
     Document:
       class: App\Entity\Document
       list:
-        fields: ['id', { property: 'fileName', label: 'Fichier' } ]
+        fields: ['id', { property: 'fileName', label: 'Fichier' } ,{ property: 'fileSize', label: 'Taille' } ,{ property: 'fileMimeType', label: 'Type' }]
       label: 'Documents'
       form:
         fields:
