@@ -159,10 +159,8 @@
   .card {
     @include card-form(50rem, 100%);
 
-    .btn-form {
-      background-color: $btn-form-controller;
-      color: $primary-text-color;
-      font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+    .btn{
+      @include btn-custom();
     }
 
     img {
@@ -188,10 +186,8 @@
   .card {
     @include card-form(40rem, 100%);
 
-    .btn-form {
-      background-color: $btn-form-controller;
-      color: $primary-text-color;
-      font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+    .btn{
+      @include btn-custom();
     }
   }
 

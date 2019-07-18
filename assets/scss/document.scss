@@ -5,11 +5,8 @@
   .card-document {
     @include basic-card(25rem, 100%);
 
-    .btn-form {
-      margin-left: 40%;
-      background-color: $btn-form-controller;
-      color: $primary-text-color;
-      font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+    .btn{
+      @include btn-custom();
     }
 
     img {
@@ -21,22 +18,30 @@
       font-family: $font-main-title;
       font-size: calc(15px + (30 - 15) * ((100vw - 300px) / (1600 - 300)));
     }
+
+  }
+
+  a {
+    color: $primary-color;
+    text-decoration: unset;
   }
 }
 
-.document-section {
+.file-section {
   background-color: $section-color-light;
   padding-top: 15vh;
 
-  .card-document {
-    @include card-dashboard(25rem, 100%);
 
-    .btn-form {
-      margin-left: 40%;
-      background-color: $btn-form-controller;
-      color: $primary-text-color;
-      font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
-    }
+  .btn{
+    @include btn-custom();
+    margin-left: 40%;
+  }
+
+  .btn-back {
+    margin-left: 5%;
+  }
+  .card-file {
+    @include basic-card(28rem, 100%);
 
     img {
       max-height: 15vh;

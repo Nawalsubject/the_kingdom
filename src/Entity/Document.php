@@ -28,9 +28,9 @@ class Document
     /**
      * @Vich\UploadableField(mapping="document", fileNameProperty="fileName", size="fileSize", mimeType="fileMimeType")
      * @Assert\File(
-     *     mimeTypes={ "image/jpg", "image/png", "image/jpeg", "image/gif", "image/vnd.adobe.photoshop", "application/pdf" },
+     *     mimeTypes={ "image/jpg", "image/png", "image/jpeg", "image/gif", "application/pdf" },
      *     maxSize="2M",
-     *     mimeTypesMessage="Veuillez choisir un fichier de type .jpg, .jpeg, .png, .psd, .pdf ou .gif",
+     *     mimeTypesMessage="Veuillez choisir un fichier de type .jpg, .jpeg, .png, .pdf ou .gif",
      *     maxSizeMessage="Veuillez choisir un fichier de 1.9Mo maximum"
      *  )
      */

@@ -11,6 +11,7 @@
 
                 {% for folder in folders %}
 
+                    <a href="{{ path('show_files_by_category', {'id': folder.id}) }}">
                     <div class="card card-document mx-2 my-2">
                         <div class="card-body pb-0">
                             <img src="{{ asset('build/logo_folder.png') }}"
@@ -19,6 +20,8 @@
                             <p class="text-center">{{ folder.name }}</p>
                         </div>
                     </div>
+                    </a>
+
                 {% endfor %}
 
             </div>

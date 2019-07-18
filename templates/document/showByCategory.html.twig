@@ -4,29 +4,34 @@
 
 {% block body %}
 
-    <section class="document-section">
+    <section class="file-section">
         <div class="container-fluid">
+
+            <a class="btn btn-back mb-5" href="{{ path('folders') }}">
+                <i class="fas fa-chevron-left"></i>
+                Retour aux dossiers
+            </a>
 
             <div class="row mx-auto justify-content-center">
 
-                {% for document in documents %}
+                {% for file in files %}
 
-                    <div class="card card-document mx-2 my-2">
+                    <div class="card card-file mx-2 my-2">
                         <h5 class="card-header">
-                            {% if document.fileName|length > 25 %}
-                                {{ document.fileName [:25] ~ '...'}}
+                            {% if file.fileName|length > 35 %}
+                                {{ file.fileName [:35] ~ '...'}}
                             {% else %}
-                                {{ document.fileName }}
+                                {{ file.fileName }}
                             {% endif %}
                         </h5>
                         <div class="card-body pb-0">
-                            <img src="{{ document.fileMimeType == 'application/pdf' ? asset('build/logo_pdf.png') : vich_uploader_asset(document, 'file') }}"
+                            <img src="{{ file.fileMimeType == 'application/pdf' ? asset('build/logo_scroll.png') : vich_uploader_asset(file, 'file') }}"
                                  class="card-img-top"
-                                 alt="{{ document.fileName }}">
-                            <p class="text-center text-muted mt-3">{{ document.fileSize|number_format(2) }}Ko</p>
+                                 alt="{{ file.fileName }}">
+                            <p class="text-center text-muted mt-3">{{ file.fileSize|number_format(2) }}Ko</p>
                         </div>
                         <div class="card-footer text-muted">
-                            <a href="documents/{{ document.fileName }}" target="_blank"
+                            <a href="{{ absolute_url('/') }}documents/{{ file.fileName }}" target="_blank"
                                class="btn btn-form text-center">Voir</a>
                         </div>
                     </div>

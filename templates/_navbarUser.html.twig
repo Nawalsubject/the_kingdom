@@ -21,8 +21,8 @@
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_register' %} active {% endif %}"
                href="{{ path('app_register') }}">S'INSCRIRE</a>
             {% else %}
-            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'document' %} active {% endif %}"
-               href="{{ path('document') }}" >DOCUMENTS</a>
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'folders' %} active {% endif %}"
+               href="{{ path('folders') }}" >DOCUMENTS</a>
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'user_listing' %} active {% endif %}"
                href="{{ path('user_listing', {'addWhat': 'nothing'}) }}">MEMBRES</a>
             <a class="nav-item nav-link py-auto {% if app.request.attributes.get("_route") == 'user_dashboard' %} active {% endif %}"
