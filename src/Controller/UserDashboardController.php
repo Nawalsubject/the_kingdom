@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserInformationType;
 use App\Form\UserJobsType;
+use App\Form\UserSearchType;
 use App\Repository\JobRepository;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -50,9 +51,14 @@ class UserDashboardController extends AbstractController
      * @param string $addWhat
      * @return Response
      */
-    public function userListing(UserRepository $userRepository, string $addWhat): Response
+    public function userListing(UserRepository $userRepository, string $addWhat, Request $request): Response
     {
         $users = $userRepository->findAll();
+
+        if (isset($_GET['searchField'])) {
+            $data = $_GET['searchField'];
+            $users = $userRepository->searchByName($data);
+        }
 
         return $this->render('user/userListing.html.twig', [
             'users' => $users,
