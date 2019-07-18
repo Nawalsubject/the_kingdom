@@ -1,0 +1,31 @@
+.request-password {
+  padding-top: 15vh;
+
+  h1 {
+    color: $primary-color;
+  }
+
+  .card {
+    @include card-form(30rem, 100%);
+
+    .btn {
+      @include btn-custom();
+    }
+  }
+}
+
+.change-password {
+  padding-top: 15vh;
+
+  .card {
+    @include card-form(30rem, 100%);
+
+    .btn {
+      @include btn-custom();
+    }
+  }
+
+  h1 {
+    color: $primary-color;
+  }
+}
