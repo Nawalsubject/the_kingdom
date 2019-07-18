@@ -19,6 +19,20 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function findAllWithoutUserGodchildren($userId)
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.buddy', 'buddy')
+            ->where('u.buddy IS NULL OR u.buddy <> :user_id')
+            ->andWhere('u.id <> :user_id')
+            ->setParameter(':user_id', $userId)
+            ->orderBy('u.firstname')
+            ->addOrderBy('u.lastname')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     /**
      * @return User[] Returns an array of Article objects
      */

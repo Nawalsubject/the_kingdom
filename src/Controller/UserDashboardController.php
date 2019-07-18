@@ -53,11 +53,16 @@ class UserDashboardController extends AbstractController
      */
     public function userListing(UserRepository $userRepository, string $addWhat, Request $request): Response
     {
+        $user = $this->getUser();
         $users = $userRepository->findAll();
 
         if (isset($_GET['searchField'])) {
             $data = $_GET['searchField'];
             $users = $userRepository->searchByName($data);
+        }
+
+        if ($addWhat === 'godchild') {
+            $users = $userRepository->findAllWithoutUserGodchildren($user->getId());
         }
 
         return $this->render('user/userListing.html.twig', [
