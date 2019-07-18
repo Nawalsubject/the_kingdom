@@ -16,6 +16,7 @@
                         <div class="card card-profile mx-auto mb-5">
                             <h3 class="card-header align-items-center">
                                 {{ user.firstname ~ ' ' ~ user.lastname }}
+                                {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
                                 {% if addWhat != 'nothing' %}
                                     <a href="
                                         {% if addWhat == 'buddy' %}
