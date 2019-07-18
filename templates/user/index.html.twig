@@ -29,7 +29,10 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">
-                                    <h5 class="card-title text-md-left text-center">{{ user.firstname ~ ' ' ~ user.lastname }}</h5>
+                                    <h5 class="card-title text-md-left text-center">
+                                        {{ user.firstname ~ ' ' ~ user.lastname }}
+                                        {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
+                                    </h5>
                                     <p class="card-text ml-md-5 ml-0"><img
                                                 src="{{ asset('build/logo_email.png') }}">{{ user.email }}</p>
                                     <p class="card-text ml-md-5 ml-0"><img

@@ -13,10 +13,10 @@
     <li>Pas encore adoubé</li>
     {% endif %}
     <li>Cellule : {{ user.county.name }}</li>
-    <li>Corps de métier : </li>
+    <li>Métiers : </li>
     <ul>
-        {% for trade in user.trades %}
-            <li>{{ trade.name }}</li>
+        {% for job in user.jobs %}
+            <li>{{ job.name }}</li>
         {% endfor %}
     </ul>
 </ul>

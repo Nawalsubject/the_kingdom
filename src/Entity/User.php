@@ -135,6 +135,11 @@ class User implements UserInterface
      */
     private $resetPasswordToken;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gender", inversedBy="users")
+     */
+    private $gender;
+
     public function __construct()
     {
         $this->godChildren = new ArrayCollection();
@@ -421,5 +426,17 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getFullName();
+    }
+
+    public function getGender(): ?Gender
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?Gender $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
     }
 }

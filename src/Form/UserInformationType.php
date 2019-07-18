@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\County;
+use App\Entity\Gender;
 use App\Entity\Trade;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -42,6 +43,14 @@ class UserInformationType extends AbstractType
                 'label_attr' => ['class' => 'col-sm-12'],
                 'attr' => ['placeholder' => 'Gomedj'],
                 'invalid_message' => 'Saisis ton nom',
+            ])
+            ->add('gender', EntityType::class, [
+                'class' => Gender::class,
+                'required' => true,
+                'label' => 'Genre',
+                'choice_label' => 'name',
+                'label_attr' => ['class' => 'col-sm-12'],
+                'invalid_message' => 'Choisis un genre',
             ])
             ->add('enteredAt', DateType::class, [
                 'label' => 'Date d\'entrée au Royaume :',

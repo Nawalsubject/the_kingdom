@@ -47,7 +47,7 @@ class UserDashboardController extends AbstractController
     /**
      * @Route("/{addWhat}/listing", name="user_listing")
      * @param UserRepository $userRepository
-     * @param string $addBuddy
+     * @param string $addWhat
      * @return Response
      */
     public function userListing(UserRepository $userRepository, string $addWhat): Response

@@ -1,9 +1,9 @@
 easy_admin:
 
   formats:
-    date:     'd/m/Y'
+    date:     'Y'
     time:     'H:i'
-    datetime: 'd/m/Y H:i:s'
+    datetime: 'Y'
 
   user:
     name_property_path: 'fullName'
