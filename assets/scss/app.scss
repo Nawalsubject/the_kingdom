@@ -6,7 +6,7 @@
 @import "user_linsting";
 @import "admin";
 @import "document";
-
+@import "reset_paswword";
 
 /*================== Style Alert ===============*/
 
@@ -33,6 +33,7 @@
 
 body {
   font-family: $font-text;
+  background-color: $section-color-light;
 }
 
 h1 {

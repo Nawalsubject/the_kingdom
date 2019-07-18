@@ -30,6 +30,16 @@ $navbar-height: 50px;
   color: $color;
 }
 
+@mixin btn-custom {
+  background-color: $btn-form-controller;
+  color: $primary-text-color;
+  font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+  &:hover {
+    background-color: darken($section-color-light, 50%);
+    color: $primary-text-color;
+  }
+}
+
 @mixin card-form($width, $max-width) {
   width: $width;
   max-width: $max-width;
