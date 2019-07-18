@@ -9,12 +9,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarKingdom">
-        {% if is_granted('ROLE_ADMIN') %}
-            <div class="navbar-nav">
-                <a class="nav-item nav-link admin-link text-left" href="{{ path('easyadmin') }}">ADMINISTRATION</a>
-            </div>
-        {% endif %}
         <div class="navbar-nav py-0 ml-auto text-right">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="nav-item nav-link" href="{{ path('easyadmin') }}">ADMINISTRATION</a>
+            {% endif %}
             {% if not app.user %}
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_login' %} active {% endif %}"
                href="{{ path('app_login') }}">SE CONNECTER</a>
@@ -22,7 +20,7 @@
                href="{{ path('app_register') }}">S'INSCRIRE</a>
             {% else %}
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'folders' %} active {% endif %}"
-               href="{{ path('folders') }}" >DOCUMENTS</a>
+               href="{{ path('folders') }}">DOCUMENTS</a>
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'user_listing' %} active {% endif %}"
                href="{{ path('user_listing', {'addWhat': 'nothing'}) }}">MEMBRES</a>
             <a class="nav-item nav-link py-auto {% if app.request.attributes.get("_route") == 'user_dashboard' %} active {% endif %}"
