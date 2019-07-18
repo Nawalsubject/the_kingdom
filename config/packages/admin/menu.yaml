@@ -1,7 +1,8 @@
 easy_admin:
   design:
     menu:
-      - {entity: 'User', label: 'Royaumiens', icon: 'user'}
+      - { label: 'Retour au site', route: 'app_index', icon: 'home' }
+      - {entity: 'User', label: 'Royaumiens', icon: 'user', default: true}
       - {entity: 'Trade', label: 'Corps de métier', icon: 'layer-group'}
       - {entity: 'Job', label: 'Métiers', icon: 'hammer'}
       - {entity: 'County', label: 'Cellules', icon: 'fort-awesome'}
