@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db0d75fb0608979e6b02978e82a86ca1",
+    "content-hash": "9b35bd2bafca8a09949f53d27a42102f",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1444,6 +1444,52 @@
                 "rest"
             ],
             "time": "2016-10-17T18:31:11+00:00"
+        },
+        {
+            "name": "ghunti/highcharts-php",
+            "version": "v3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ghunti/HighchartsPHP.git",
+                "reference": "548b321478510ec1559432a9baabbfba1a1e559a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ghunti/HighchartsPHP/zipball/548b321478510ec1559432a9baabbfba1a1e559a",
+                "reference": "548b321478510ec1559432a9baabbfba1a1e559a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ghunti\\HighchartsPHP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Gonçalo Queirós",
+                    "email": "mail@goncaloqueiros.net",
+                    "homepage": "http://goncaloqueiros.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A php wrapper for highcharts and highstock javascript libraries",
+            "homepage": "http://goncaloqueiros.net/highcharts.php",
+            "keywords": [
+                "charts",
+                "highcharts",
+                "highstock",
+                "javascript",
+                "php"
+            ],
+            "time": "2016-01-24T11:57:43+00:00"
         },
         {
             "name": "jdorn/sql-formatter",

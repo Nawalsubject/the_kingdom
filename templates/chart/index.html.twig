@@ -1,0 +1,14 @@
+{% extends 'userLayout.html.twig' %}
+
+{% block title %}Graphique des métiers {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('highcharts') }}
+{% endblock %}

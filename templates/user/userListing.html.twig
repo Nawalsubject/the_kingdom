@@ -76,3 +76,7 @@
     </section>
 
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+{% endblock %}

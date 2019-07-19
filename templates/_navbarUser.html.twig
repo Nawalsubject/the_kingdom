@@ -19,8 +19,10 @@
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'app_register' %} active {% endif %}"
                href="{{ path('app_register') }}">S'INSCRIRE</a>
             {% else %}
-            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'folders' %} active {% endif %}"
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'folders' or app.request.attributes.get("_route") == 'show_files_by_category'%} active {% endif %}"
                href="{{ path('folders') }}">DOCUMENTS</a>
+            <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'job_chart' %} active {% endif %}"
+               href="{{ path('job_chart') }}">GRAPHIQUES</a>
             <a class="nav-item nav-link mx-2 {% if app.request.attributes.get("_route") == 'user_listing' %} active {% endif %}"
                href="{{ path('user_listing', {'isAddGodchildRequest': 'false' }) }}">MEMBRES</a>
             <a class="nav-item nav-link py-auto {% if app.request.attributes.get("_route") == 'user_dashboard' %} active {% endif %}"

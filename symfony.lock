@@ -127,6 +127,9 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "ghunti/highcharts-php": {
+        "version": "v3.0.3"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
