@@ -37,7 +37,24 @@ class UserRepository extends ServiceEntityRepository
      * @return User[] Returns an array of Article objects
      */
 
-    public function searchByName($name, $userId)
+    public function searchByName($name)
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.buddy', 'buddy')
+            ->Where('u.firstname LIKE :name OR u.lastname LIKE :name')
+            ->setParameter('name', "%$name%")
+            ->orderBy('u.firstname', 'ASC')
+            ->addOrderBy('u.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return User[] Returns an array of Article objects
+     */
+
+    public function searchByNameWithoutUserGodchildren($name, $userId)
     {
         return $this->createQueryBuilder('u')
             ->leftJoin('u.buddy', 'buddy')

@@ -11,9 +11,13 @@
             <div class="row mx-auto justify-content-center">
 
                 <div class="col-12 mb-5 mx-auto">
-                    <form class="form-inline"
-                          action="{{ path('user_listing') }}"
-                          method="get">
+                    <form class="form-inline" action="
+                          {% if isAddGodchildRequest %}
+                            {{ path('user_listing', {'isAddGodchildRequest': 'true'}) }}
+                          {% else %}
+                            {{ path('user_listing', {'isAddGodchildRequest': 'false'}) }}
+                          {% endif %}
+                          " method="get">
                         <input name="searchField" type="search" aria-label="Search">
                         <button class="btn" type="submit"><i class="fa fa-search"></i></button>
                     </form>

@@ -44,24 +44,32 @@ class UserDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/listing", name="user_listing")
+     * @Route("/{isAddGodchildRequest}/listing", name="user_listing")
      * @param UserRepository $userRepository
      * @return Response
      */
-    public function userListing(UserRepository $userRepository, Request $request): Response
+    public function userListing(UserRepository $userRepository, string $isAddGodchildRequest, Request $request): Response
     {
         $user = $this->getUser();
-        $users = $userRepository->findAllWithoutUserGodchildren($user->getId());
+        $users = $userRepository->findAll();
+
+        if ($isAddGodchildRequest === 'true') {
+            $users = $userRepository->findAllWithoutUserGodchildren($user->getId());
+
+            if (isset($_GET['searchField'])) {
+                $data = $_GET['searchField'];
+                $users = $userRepository->searchByNameWithoutUserGodchildren($data, $user->getId());
+            }
+        }
 
         if (isset($_GET['searchField'])) {
             $data = $_GET['searchField'];
-            $users = $userRepository->searchByName($data, $user->getId());
+            $users = $userRepository->searchByName($data);
         }
-
-        dump($users);
 
         return $this->render('user/userListing.html.twig', [
             'users' => $users,
+            'isAddGodchildRequest' => $isAddGodchildRequest,
         ]);
     }
 
@@ -98,7 +106,7 @@ class UserDashboardController extends AbstractController
         $oldPassword = $form->get('oldPassword')->getData();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ( empty($oldPassword) ) {
+            if (empty($oldPassword)) {
                 $this->getDoctrine()->getManager()->flush();
                 $user->setImageFile(null);
 
@@ -138,7 +146,7 @@ class UserDashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success' , 'Vos métiers ont bien été modifés.');
+            $this->addFlash('success', 'Vos métiers ont bien été modifés.');
             return $this->redirectToRoute('user_dashboard');
         }
 
@@ -158,7 +166,7 @@ class UserDashboardController extends AbstractController
     {
         $user = $this->getUser();
 
-        if ($this->isCsrfTokenValid('delete'.$godchild->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $godchild->getId(), $request->request->get('_token'))) {
             $user->removeGodchild($godchild);
             $this->getDoctrine()->getManager()->flush();
         }
