@@ -12,7 +12,7 @@
 
                 <div class="col-12 mb-5 mx-auto">
                     <form class="form-inline" action="
-                          {% if isAddGodchildRequest %}
+                          {% if isAddGodchildRequest == 'true' %}
                             {{ path('user_listing', {'isAddGodchildRequest': 'true'}) }}
                           {% else %}
                             {{ path('user_listing', {'isAddGodchildRequest': 'false'}) }}
@@ -23,49 +23,53 @@
                     </form>
                 </div>
 
-                {% for user in users %}
+                {% if users is not empty %}
+                    {% for user in users %}
 
-                    <div class="col-lg-6">
-                        <div class="card card-profile mx-auto mb-5">
-                            <h3 class="card-header align-items-center">
-                                {{ user.firstname ~ ' ' ~ user.lastname }}
-                                {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
-                                <a data-toggle="tooltip"
-                                   data-placement="right"
-                                   title=" Ajouter en tant que filleul "
-                                   href="{{ path('add_godchild', {'id' : user.id}) }}">
-                                    <i class="fas fa-hands-helping float-right"></i>
-                                </a>
-                            </h3>
-                            <div class="row align-items-center justify-content-center">
-                                <div class="col-md-3 profil-picture">
-                                    <img src="{% if user.imageName %}{{ vich_uploader_asset(user, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
-                                         class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
-                                         alt="photo de profil de {{ user.firstname ~ ' ' ~ user.lastname|upper }}">
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="card-body">
-                                        <p class="card-text ml-md-5 ml-0"><img
-                                                    src="{{ asset('build/logo_email.png') }}">{{ user.email }}</p>
-                                        <p class="card-text ml-md-5 ml-0"><img
-                                                    src="{{ asset('build/logo_county.png') }}">{{ user.county.name }}
-                                        </p>
-                                        <p class="card-text ml-md-5 ml-0"><img
-                                                    src="{{ asset('build/logo_phone.png') }}">{{ user.phone ? user.phone : 'Non renseigné' }}
-                                        </p>
-                                        <p class="card-text ml-md-5 ml-0"><img
-                                                    src="{{ asset('build/logo_enteredAt.png') }}">Membre
-                                            depuis {{ user.enteredAt|date("Y") }}</p>
-                                        <p class="card-text ml-md-5 ml-0"><img
-                                                    src="{{ asset('build/logo_knightAt.png') }}">{% if user.knightedAt %}Adoubé en {{ user.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
-                                        </p>
+                        <div class="col-lg-6">
+                            <div class="card card-profile mx-auto mb-5">
+                                <h3 class="card-header align-items-center">
+                                    {{ user.firstname ~ ' ' ~ user.lastname }}
+                                    {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
+                                    <a data-toggle="tooltip"
+                                       data-placement="right"
+                                       title=" Ajouter en tant que filleul "
+                                       href="{{ path('add_godchild', {'id' : user.id}) }}">
+                                        <i class="fas fa-hands-helping float-right"></i>
+                                    </a>
+                                </h3>
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-md-3 profil-picture">
+                                        <img src="{% if user.imageName %}{{ vich_uploader_asset(user, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
+                                             class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
+                                             alt="photo de profil de {{ user.firstname ~ ' ' ~ user.lastname|upper }}">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="card-body">
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_email.png') }}">{{ user.email }}</p>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_county.png') }}">{{ user.county.name }}
+                                            </p>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_phone.png') }}">{{ user.phone ? user.phone : 'Non renseigné' }}
+                                            </p>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_enteredAt.png') }}">Membre
+                                                depuis {{ user.enteredAt|date("Y") }}</p>
+                                            <p class="card-text ml-md-5 ml-0"><img
+                                                        src="{{ asset('build/logo_knightAt.png') }}">{% if user.knightedAt %}Adoubé en {{ user.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <h2 class="text-dark mt-5">Aucun résultat</h2>
+                {% endif %}
 
             </div>
         </div>

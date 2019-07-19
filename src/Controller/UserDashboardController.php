@@ -53,6 +53,11 @@ class UserDashboardController extends AbstractController
         $user = $this->getUser();
         $users = $userRepository->findAll();
 
+        if (isset($_GET['searchField'])) {
+            $data = $_GET['searchField'];
+            $users = $userRepository->searchByName($data);
+        }
+
         if ($isAddGodchildRequest === 'true') {
             $users = $userRepository->findAllWithoutUserGodchildren($user->getId());
 
@@ -60,11 +65,6 @@ class UserDashboardController extends AbstractController
                 $data = $_GET['searchField'];
                 $users = $userRepository->searchByNameWithoutUserGodchildren($data, $user->getId());
             }
-        }
-
-        if (isset($_GET['searchField'])) {
-            $data = $_GET['searchField'];
-            $users = $userRepository->searchByName($data);
         }
 
         return $this->render('user/userListing.html.twig', [
