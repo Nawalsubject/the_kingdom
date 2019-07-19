@@ -4,11 +4,18 @@
 
 {% block body %}
 
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <section class="chart">
+        <div id="container" class="container">
+        </div>
+    </section>
+
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('highcharts') }}
+    <script>
+        {{ chart | raw }}
+    </script>
 {% endblock %}
