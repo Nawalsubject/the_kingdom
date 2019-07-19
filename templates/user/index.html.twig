@@ -55,31 +55,7 @@
 
                 <div class="col-lg-5">
                     <div class="card card-buddy mx-auto mb-5">
-                        <div class="card-header">
-
-                            {% if not buddy %}
-                                Mon parrain
-                                <a data-toggle="tooltip"
-                                   data-placement="right"
-                                   title=" Ajouter un parrain "
-                                   href="{{ path('user_listing', {'addWhat': 'buddy'}) }}">
-                                    <i class="fas fa-plus-circle float-right"></i>
-                                </a>
-                            {% else %}
-                                <form method="post" action="{{ path('buddy_delete', {'id': buddy.id}) }}"
-                                      onsubmit="return confirm('Voulez-vous supprimer votre parrain ?');">
-                                    <p class="float-left mt-1 mb-0">Mon parrain</p>
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ buddy.id) }}">
-                                    <button class="btn my-auto float-right"
-                                            data-toggle="tooltip"
-                                            data-placement="right"
-                                            title=" Supprimer un parrain ">
-                                        <i class="fas fa-trash-alt float-right"></i>
-                                    </button>
-                                </form>
-                            {% endif %}
-                        </div>
+                        <div class="card-header">Mon parrain</div>
                         <div class="row align-items-center justify-content-center">
                             {% if buddy %}
                                 <div class="col-md-3 profil-picture">
@@ -171,7 +147,7 @@
                             <a data-toggle="tooltip"
                                data-placement="right"
                                title=" Ajouter un filleul "
-                               href="{{ path('user_listing', {'addWhat': 'godchild'}) }}">
+                               href="{{ path('user_listing') }}">
                                 <i class="fas fa-plus-circle float-right"></i>
                             </a>
                         </div>
@@ -186,10 +162,12 @@
                                     <div class="col-md-9">
                                         <div class="card-body {% if loop.index < godChildren|length %}godchildNext{% endif %}">
                                             <h5 class="card-title text-md-left text-center">{{ godchild.firstname ~ ' ' ~ godchild.lastname }}</h5>
-                                            <form method="post" action="{{ path('godchild_delete', {'id': godchild.id}) }}"
+                                            <form method="post"
+                                                  action="{{ path('godchild_delete', {'id': godchild.id}) }}"
                                                   onsubmit="return confirm('Voulez-vous supprimer {{ godchild.firstname ~ ' ' ~ godchild.lastname }} de vos filleuls ?');">
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ godchild.id) }}">
+                                                <input type="hidden" name="_token"
+                                                       value="{{ csrf_token('delete' ~ godchild.id) }}">
                                                 <button class="btn my-auto float-right"
                                                         data-toggle="tooltip"
                                                         data-placement="right"

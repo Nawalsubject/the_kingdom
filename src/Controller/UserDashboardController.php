@@ -5,10 +5,8 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserInformationType;
 use App\Form\UserJobsType;
-use App\Form\UserSearchType;
 use App\Repository\JobRepository;
 use App\Repository\UserRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,53 +44,25 @@ class UserDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/{addWhat}/listing", name="user_listing")
+     * @Route("/listing", name="user_listing")
      * @param UserRepository $userRepository
-     * @param string $addWhat
      * @return Response
      */
-    public function userListing(UserRepository $userRepository, string $addWhat, Request $request): Response
+    public function userListing(UserRepository $userRepository, Request $request): Response
     {
         $user = $this->getUser();
-        $users = $userRepository->findAll();
+        $users = $userRepository->findAllWithoutUserGodchildren($user->getId());
 
         if (isset($_GET['searchField'])) {
             $data = $_GET['searchField'];
-            $users = $userRepository->searchByName($data);
+            $users = $userRepository->searchByName($data, $user->getId());
         }
 
-        if ($addWhat === 'godchild') {
-            $users = $userRepository->findAllWithoutUserGodchildren($user->getId());
-        }
+        dump($users);
 
         return $this->render('user/userListing.html.twig', [
             'users' => $users,
-            'addWhat' => $addWhat,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/add-buddy", name="add_buddy")
-     * @param User $buddy
-     * @return Response
-     */
-    public function addBuddy(User $buddy): Response
-    {
-        $user = $this->getUser();
-
-        if ($user->getBuddy()) {
-            $this->addFlash('danger', 'Vous avez déjà un parrain');
-            return $this->redirectToRoute('user_listing');
-        }
-
-        $user->setBuddy($buddy);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
-
-        $this->addFlash('success', 'Votre parrain vous a bien été affecté');
-
-        return $this->redirectToRoute('user_dashboard');
     }
 
     /**
@@ -176,25 +146,6 @@ class UserDashboardController extends AbstractController
             'user' => $user,
             'jobsForm' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/buddy/{id}", name="buddy_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param User $buddy
-     * @return Response
-     */
-    public function deleteBuddy(Request $request, User $buddy): Response
-    {
-        $user = $this->getUser();
-
-        if ($this->isCsrfTokenValid('delete'.$buddy->getId(), $request->request->get('_token'))) {
-            $user->setBuddy(null);
-            $this->getDoctrine()->getManager()->flush();
-        }
-        $this->addFlash('success', 'Votre suppression a bien été effectuée');
-
-        return $this->redirectToRoute('user_dashboard');
     }
 
     /**

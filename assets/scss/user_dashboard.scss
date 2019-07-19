@@ -28,11 +28,6 @@
 .card-buddy {
   @include card-dashboard(35rem, 100%);
 
-  i {
-    color: $primary-text-color;
-    font-size: 1.8rem;
-  }
-
   .profil-picture {
     img {
       width: 8rem;

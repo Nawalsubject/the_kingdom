@@ -9,13 +9,7 @@
         <div class="container-fluid">
 
             <form class="form-inline my-2 my-lg-0"
-                  action="{% if app.request.attributes.get("_route") == 'add_buddy' %}
-                                {{ path('user_listing', {'addWhat': 'buddy'}) }}
-                            {% elseif app.request.attributes.get("_route") == 'add_godchild' %}
-                                {{ path('user_listing', {'addWhat': 'godchild'}) }}
-                            {% else %}
-                                {{ path('user_listing', {'addWhat': 'nothing'}) }}
-                            {% endif %}"
+                  action="{{ path('user_listing') }}"
                   method="get">
                 <input class="form-control mr-sm-2" name="searchField" type="search" placeholder="Search"
                        aria-label="Search">
@@ -31,16 +25,9 @@
                             <h3 class="card-header align-items-center">
                                 {{ user.firstname ~ ' ' ~ user.lastname }}
                                 {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
-                                {% if addWhat != 'nothing' %}
-                                    <a href="
-                                        {% if addWhat == 'buddy' %}
-                                            {{ path('add_buddy' , {'id': user.id}) }}
-                                        {% else %}
-                                            {{ path('add_godchild', {'id' : user.id}) }}
-                                        {% endif %}">
-                                        <i class="fas fa-plus-circle float-right"></i>
-                                    </a>
-                                {% endif %}
+                                <a href="{{ path('add_godchild', {'id' : user.id}) }}">
+                                    <i class="fas fa-hands-helping float-right"></i>
+                                </a>
                             </h3>
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-md-3 profil-picture">
