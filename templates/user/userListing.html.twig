@@ -8,15 +8,16 @@
 
         <div class="container-fluid">
 
-            <form class="form-inline my-2 my-lg-0"
-                  action="{{ path('user_listing') }}"
-                  method="get">
-                <input class="form-control mr-sm-2" name="searchField" type="search" placeholder="Search"
-                       aria-label="Search">
-                <button class="btn my-2 my-sm-0" type="submit">Rechercher</button>
-            </form>
-
             <div class="row mx-auto justify-content-center">
+
+                <div class="col-12 mb-5 mx-auto">
+                    <form class="form-inline"
+                          action="{{ path('user_listing') }}"
+                          method="get">
+                        <input name="searchField" type="search" aria-label="Search">
+                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
 
                 {% for user in users %}
 
@@ -25,7 +26,10 @@
                             <h3 class="card-header align-items-center">
                                 {{ user.firstname ~ ' ' ~ user.lastname }}
                                 {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
-                                <a href="{{ path('add_godchild', {'id' : user.id}) }}">
+                                <a data-toggle="tooltip"
+                                   data-placement="right"
+                                   title=" Ajouter en tant que filleul "
+                                   href="{{ path('add_godchild', {'id' : user.id}) }}">
                                     <i class="fas fa-hands-helping float-right"></i>
                                 </a>
                             </h3>
