@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Repository\CountyRepository;
 use App\Repository\JobRepository;
 use App\Repository\UserRepository;
 use Ghunti\HighchartsPHP\Highchart;
 use Ghunti\HighchartsPHP\HighchartJsExpr;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Count;
 
 /**
  * @Route("/chart")
@@ -19,44 +21,70 @@ class ChartController extends AbstractController
     /**
      * @Route("/job", name="job_chart")
      */
-    public function jobChart(JobRepository $jobRepository)
+    public function jobChart(JobRepository $jobRepository, CountyRepository $countyRepository)
     {
         $jobs = $jobRepository->findAll();
+        $counties = $countyRepository->findAll();
 
-        $data = [];
+        $jobData = [];
 
         foreach ($jobs as $key => $job) {
-            $data[$key]['name'] = $job->getName();
-            $data[$key]['y'] = count($job->getUsers());
+            $jobData[$key]['name'] = $job->getName();
+            $jobData[$key]['y'] = count($job->getUsers());
         }
 
-        dump($data);
+        $jobChart = new Highchart();
 
-        $chart = new Highchart();
+        $jobChart->chart->renderTo = "jobChart";
+        $jobChart->chart->backgroundColor = 'rgba(0,55,0,0)';
+        $jobChart->title->text = "Métiers au royaume";
 
-        $chart->chart->renderTo = "container";
-        $chart->chart->backgroundColor = 'rgba(0,55,0,0)';
-        $chart->chart->type = "pie";
-        $chart->title->text = "Métiers au royaume";
-        $chart->xAxis->type = "category";
-        $chart->yAxis->title->text = "Pourcentage de royaumiens";
+        $jobChart->plotOptions->pie->allowPointSelect = true;
+        $jobChart->plotOptions->pie->cursor = 'pointer';
+        $jobChart->plotOptions->pie->dataLabels->enabled = true;
+        $jobChart->plotOptions->pie->dataLabels->format = '<p style="font-size: 1rem;">{point.name}</b><span style="font-size: 0.8rem;">: {point.percentage:.1f} %</span>';
 
-        $chart->plotOptions->pie->allowPointSelect = true;
-        $chart->plotOptions->pie->cursor = 'pointer';
-        $chart->plotOptions->pie->dataLabels->enabled = true;
-        $chart->plotOptions->pie->dataLabels->format = '<b>{point.name}</b>: {point.percentage:.1f} %';
+        $jobChart->tooltip->pointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>';
 
-        $chart->tooltip->headerFormat = '<span style="font-size:11px">{series.name}</span><br>';
-        $chart->tooltip->pointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>';
+        $jobChart->series[] = [
+            'type' => 'pie',
+            'name' => 'Total',
+            'colorByPoint' => true,
+            'data' => $jobData,
+        ];
 
-        $chart->series[] = [
+        $countyData = [];
+
+        foreach ($counties as $key => $county) {
+            $countyData[$key]['name'] = $county->getName();
+            $countyData[$key]['y'] = count($county->getUsers());
+        }
+
+        $countyChart = new Highchart();
+
+        $countyChart->chart->renderTo = "countyChart";
+        $countyChart->chart->backgroundColor = 'rgba(0,55,0,0)';
+        $countyChart->title->text = "Cellules du royaume";
+
+        $countyChart->plotOptions->pie->allowPointSelect = true;
+        $countyChart->plotOptions->pie->cursor = 'pointer';
+        $countyChart->plotOptions->pie->dataLabels->enabled = false;
+        $countyChart->plotIptions->pie->showInLegend = true;
+
+        $countyChart->legend->enable = true;
+        $countyChart->tooltip->pointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>';
+
+        $countyChart->series[] = [
+            'type' => 'pie',
             'name' => '',
             'colorByPoint' => true,
-            'data' => $data,
+            'data' => $countyData,
+            'showInLegend' => true,
         ];
 
         return $this->render('chart/index.html.twig', [
-            'chart' => $chart->render(),
+            'jobChart' => $jobChart->render(),
+            'countyChart' => $countyChart->render(),
         ]);
     }
 }
