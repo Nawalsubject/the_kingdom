@@ -44,9 +44,9 @@ class ChartController extends AbstractController
         $chart->plotOptions->pie->allowPointSelect = true;
         $chart->plotOptions->pie->cursor = 'pointer';
         $chart->plotOptions->pie->dataLabels->enabled = true;
-        $chart->plotOptions->pie->dataLabels->format = '<b>{point.name}</b>: {point.percentage:.1f} %';
+        $chart->plotOptions->pie->dataLabels->format = '<b style="font-size:15px">{point.name}</b>: <span style="font-size:15px">{point.percentage:.1f} %</span>';
 
-        $chart->tooltip->headerFormat = '<span style="font-size:11px">{series.name}</span><br>';
+        $chart->tooltip->headerFormat = '<span style="font-size:15px">{series.name}</span><br>';
         $chart->tooltip->pointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>';
 
         $chart->series[] = [
