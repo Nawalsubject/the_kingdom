@@ -5,7 +5,13 @@
 {% block body %}
 
     <section class="chart">
-        <div id="container" class="container">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+
+                <div id="jobChart" class="col-md-6 card bg-transparent border-0 "></div>
+                <div id="countyChart" class="col-md-4 card bg-transparent border-0"></div>
+
+            </div>
         </div>
     </section>
 
@@ -16,6 +22,7 @@
     {{ parent() }}
     {{ encore_entry_script_tags('highcharts') }}
     <script>
-        {{ chart | raw }}
+        {{ jobChart|raw }}
+        {{ countyChart|raw }}
     </script>
 {% endblock %}
