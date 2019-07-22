@@ -30,7 +30,7 @@
         display: block;
       }
 
-      .fa {
+      .fa, .fab {
         background: $primary-color;
         color: $primary-text-color;
       }
@@ -51,7 +51,7 @@
       padding: 0 20px;
     }
 
-    .fa {
+    .fa, .fab {
       box-sizing: border-box;
       padding: 10px;
       width: 42.5px;
@@ -64,6 +64,10 @@
       text-align: center;
       font-size: 1.2em;
       transition: all 1s;
+    }
+    .fab {
+      padding: 8px;
+      font-size: 1.5em;
     }
   }
 
