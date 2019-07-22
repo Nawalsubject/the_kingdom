@@ -4,8 +4,7 @@ easy_admin:
     User:
       class: App\Entity\User
       list:
-        actions: ['show']
-        disabled_actions: ['new']
+        actions: ['show' , '-new']
 
         fields: ['id',
                  { property: 'fullname', label: 'Nom' },

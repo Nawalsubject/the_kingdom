@@ -6,6 +6,8 @@
 
     <section class="chart">
         <div class="container-fluid">
+            <h1 class="text-dark text-center mb-5">Graphiques</h1>
+
             <div class="row justify-content-center">
 
                 <div id="jobChart" class="col-md-6 card bg-transparent border-0 "></div>
@@ -22,6 +24,23 @@
     {{ parent() }}
     {{ encore_entry_script_tags('highcharts') }}
     <script>
+        Highcharts.setOptions({
+            colors: [
+                '#0A0A0A',
+                '#BF8C4E',
+                '#405A66',
+                '#DBC8AF',
+                '#6D141E',
+                '#FFFFFF',
+                '#6892A6',
+                '#A69279',
+                '#82786C',
+                '#594226',
+                '#7383D9',
+                '#BD1300',
+                '#805E34',
+            ]
+        });
         {{ jobChart|raw }}
         {{ countyChart|raw }}
     </script>

@@ -36,8 +36,10 @@ class ChartController extends AbstractController
         $jobChart = new Highchart();
 
         $jobChart->chart->renderTo = "jobChart";
+        $jobChart->chart->height = 750;
         $jobChart->chart->backgroundColor = 'rgba(0,55,0,0)';
         $jobChart->title->text = "Métiers au royaume";
+        $jobChart->title->style->fontSize = '2rem';
 
         $jobChart->plotOptions->pie->allowPointSelect = true;
         $jobChart->plotOptions->pie->cursor = 'pointer';
@@ -65,6 +67,7 @@ class ChartController extends AbstractController
         $countyChart->chart->renderTo = "countyChart";
         $countyChart->chart->backgroundColor = 'rgba(0,55,0,0)';
         $countyChart->title->text = "Cellules du royaume";
+        $countyChart->title->style->fontSize = '2rem';
 
         $countyChart->plotOptions->pie->allowPointSelect = true;
         $countyChart->plotOptions->pie->cursor = 'pointer';
@@ -72,6 +75,7 @@ class ChartController extends AbstractController
         $countyChart->plotIptions->pie->showInLegend = true;
 
         $countyChart->legend->enable = true;
+        $countyChart->legend->itemStyle->fontSize = '1rem';
         $countyChart->tooltip->pointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>';
 
         $countyChart->series[] = [

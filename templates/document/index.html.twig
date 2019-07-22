@@ -7,11 +7,13 @@
     <section class="folder-section">
         <div class="container-fluid">
 
+            <h1 class="text-center text-dark mb-5">Documents</h1>
+
             <div class="row mx-auto justify-content-center">
 
                 {% for folder in folders %}
 
-                        <div class="col-lg-3 col-md-4 col-12 card card-document mx-2 my-2">
+                        <div class="col-lg-3 col-md-4 col-12 card card-document mx-3 my-3">
                             <a href="{{ path('show_files_by_category', {'id': folder.id}) }}">
                             <div class="card-body pb-0">
                                 <img src="{{ asset('build/logo_folder.png') }}"
