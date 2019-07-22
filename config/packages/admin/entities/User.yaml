@@ -15,7 +15,9 @@ easy_admin:
                  { property: 'buddy', label: 'Parrain'},
                  { property: 'godChildren', label: 'Filleul'},
                  { property: 'enteredAt', label: "Année d'entrée" },
-                 { property: 'knightedAt', label: "Adoubement" },]
+                 { property: 'knightedAt', label: "Adoubement" },
+                 { property: 'imageName', label: 'Photo de profil', type: 'image', base_path: '/images/users' },]
+
       label: 'Royaumiens'
       edit:
         fields:
@@ -44,4 +46,4 @@ easy_admin:
           - { property: 'enteredAt', label: "Année d'entrée au royaume"}
           - { property: 'knightedAt', label: "Année d'adoubement"}
           - { property: 'jobs', label: 'Métiers'}
-          - { property: 'imageFile', label: 'Photo de profil', type: 'vich_image' }
+          - { property: 'imageName', label: 'Photo de profil', type: 'image', base_path: '/images/users' }

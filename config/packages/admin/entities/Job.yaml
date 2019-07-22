@@ -6,12 +6,10 @@ easy_admin:
       list:
         fields: ['id',
                  { property: 'name', label: 'Nom' },
-                 { property: 'description', label: 'Description' },
                  { property: 'trade', label: 'Corps de métier'},
                  { property: 'users', label: "Royaumiens" },]
       label: 'Métiers'
       form:
         fields:
           - { property: 'name', label: 'Nom'}
-          - { property: 'description', label: 'Description'}
           - { property: 'trade', label: 'Corps de métier', type: 'entity', type_options: {class: App\Entity\Trade} }

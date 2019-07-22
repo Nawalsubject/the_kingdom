@@ -4,14 +4,17 @@ easy_admin:
     Document:
       class: App\Entity\Document
       list:
+        actions: ['show']
         fields: ['id',
-                 { property: 'fileName', label: 'Fichier' },
+                 { property: 'fileName', label: 'Nom' },
+                 { property: 'fileName', label: 'Fichier', type: 'image', base_path: '/documents'},
                  { property: 'fileSize', label: 'Taille (ko)' },
                  { property: 'fileMimeType', label: 'Type' },
                  { property: 'fileCategory', label: 'Dossier' }]
       show:
         fields: ['id',
-                 { property: 'fileName', label: 'Fichier' },
+                 { property: 'fileName', label: 'Nom' },
+                 { property: 'fileName', label: 'Fichier', type: 'image', base_path: '/documents' },
                  { property: 'fileSize', label: 'Taille (ko)' },
                  { property: 'fileMimeType', label: 'Type' },
                  { property: 'fileCategory', label: 'Dossier' }]
