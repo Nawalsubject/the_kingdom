@@ -10,31 +10,35 @@
 
             <h1 class="text-center text-dark">Membres</h1>
 
-            <div class="row mx-auto justify-content-center">
+            <div class="row mx-auto justify-content-around">
 
                 <div class="col-12 mb-5 mx-auto">
-                    <div class="row">
-                    <form class="form-inline" action="
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <form class="form-inline" action="
                           {% if isAddGodchildRequest == 'true' %}
                             {{ path('user_listing', {'isAddGodchildRequest': 'true'}) }}
                           {% else %}
                             {{ path('user_listing', {'isAddGodchildRequest': 'false'}) }}
                           {% endif %}
                           " method="get">
-                        <input name="searchField" type="search" aria-label="Search">
-                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
+                                <input name="searchFieldByName" type="search" aria-label="Search">
+                                <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="col-6">
 
-                    <form class="form-inline ml-5" action="
+                            <form class="form-inline" action="
                           {% if isAddGodchildRequest == 'true' %}
                             {{ path('user_listing', {'isAddGodchildRequest': 'true'}) }}
                           {% else %}
                             {{ path('user_listing', {'isAddGodchildRequest': 'false'}) }}
                           {% endif %}
                           " method="get">
-                        <input name="searchField" type="search" aria-label="Search">
-                        <button class="btn" type="submit"><i class="fab fa-fort-awesome"></i></button>
-                    </form>
+                                <input name="searchFieldByCounty" type="search" aria-label="Search">
+                                <button class="btn" type="submit"><i class="fab fa-fort-awesome"></i></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 

@@ -53,17 +53,26 @@ class UserDashboardController extends AbstractController
         $user = $this->getUser();
         $users = $userRepository->findAll();
 
-        if (isset($_GET['searchField'])) {
-            $data = $_GET['searchField'];
+        if (isset($_GET['searchFieldByName'])) {
+            $data = $_GET['searchFieldByName'];
             $users = $userRepository->searchByName($data);
+        }
+        if (isset($_GET['searchFieldByCounty'])) {
+            $data = $_GET['searchFieldByCounty'];
+            $users = $userRepository->searchByCounty($data);
         }
 
         if ($isAddGodchildRequest === 'true') {
             $users = $userRepository->findAllWithoutUserGodchildren($user->getId());
 
-            if (isset($_GET['searchField'])) {
-                $data = $_GET['searchField'];
+            if (isset($_GET['searchFieldByName'])) {
+                $data = $_GET['searchFieldByName'];
                 $users = $userRepository->searchByNameWithoutUserGodchildren($data, $user->getId());
+            }
+
+            if (isset($_GET['searchFieldByCounty'])) {
+                $data = $_GET['searchFieldByCounty'];
+                $users = $userRepository->searchByCountyWithoutUserGodchildren($data, $user->getId());
             }
         }
 
