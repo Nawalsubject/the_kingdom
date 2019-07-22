@@ -35,6 +35,7 @@ class ChartController extends AbstractController
         $chart = new Highchart();
 
         $chart->chart->renderTo = "container";
+        $chart->chart->backgroundColor = 'rgba(0,55,0,0)';
         $chart->chart->type = "pie";
         $chart->title->text = "Métiers au royaume";
         $chart->xAxis->type = "category";
