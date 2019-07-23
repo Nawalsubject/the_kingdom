@@ -140,10 +140,16 @@ class User implements UserInterface
      */
     private $gender;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Trade", inversedBy="users")
+     */
+    private $trades;
+
     public function __construct()
     {
         $this->godChildren = new ArrayCollection();
         $this->jobs = new ArrayCollection();
+        $this->trades = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -401,6 +407,7 @@ class User implements UserInterface
     {
         if (!$this->jobs->contains($job)) {
             $this->jobs[] = $job;
+            $this->addTrade($job->getTrade());
         }
 
         return $this;
@@ -410,6 +417,7 @@ class User implements UserInterface
     {
         if ($this->jobs->contains($job)) {
             $this->jobs->removeElement($job);
+            $this->removeTrade($job->getTrade());
         }
 
         return $this;
@@ -420,7 +428,7 @@ class User implements UserInterface
      */
     public function getFullName(): string
     {
-        return $this->firstname . ' ' . $this->lastname;
+        return ucfirst($this->firstname ). ' ' . ucfirst($this->lastname);
     }
 
     public function __toString()
@@ -436,6 +444,32 @@ class User implements UserInterface
     public function setGender(?Gender $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trade[]
+     */
+    public function getTrades(): Collection
+    {
+        return $this->trades;
+    }
+
+    public function addTrade(Trade $trade): self
+    {
+        if (!$this->trades->contains($trade)) {
+            $this->trades[] = $trade;
+        }
+
+        return $this;
+    }
+
+    public function removeTrade(Trade $trade): self
+    {
+        if ($this->trades->contains($trade)) {
+            $this->trades->removeElement($trade);
+        }
 
         return $this;
     }

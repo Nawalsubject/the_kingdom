@@ -6,6 +6,7 @@ easy_admin:
       list:
         fields: ['id',
                  { property: 'name', label: 'Nom' },
+                 { property: 'users', label: 'Royaumiens' },
                  { property: 'imageName', label: 'Logo' },
                  { property: 'imageName', label: 'Logo', type: 'image', base_path: '/images/trades' },]
       label: 'Corps de métier'

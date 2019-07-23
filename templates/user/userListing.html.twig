@@ -48,7 +48,7 @@
                         <div class="col-lg-6">
                             <div class="card card-profile mx-auto mb-5">
                                 <h3 class="card-header align-items-center">
-                                    {{ user.fullName|capitalize }}
+                                    {{ user.fullName }}
                                     {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
                                     {% if isAddGodchildRequest == 'true' %}
                                     <a data-toggle="tooltip"
@@ -64,7 +64,7 @@
                                     <div class="col-md-3 profil-picture">
                                         <img src="{% if user.imageName %}{{ vich_uploader_asset(user, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
                                              class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
-                                             alt="photo de profil de {{ user.fullName|capitalize }}">
+                                             alt="photo de profil de {{ user.fullName }}">
                                     </div>
 
                                     <div class="col-md-8">

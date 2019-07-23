@@ -106,6 +106,7 @@ class UserInformationType extends AbstractType
                 'label_attr' => ['class' => 'col-sm-12 custom-file'],
                 'allow_delete' => false,
                 'download_link' => false,
+                'invalid_message' => 'fichier trop gros'
             ])
             ->add('oldPassword', PasswordType::class, [
                 'mapped' => false,

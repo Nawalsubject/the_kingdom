@@ -4,55 +4,50 @@ namespace App\Controller;
 
 use App\Repository\CountyRepository;
 use App\Repository\JobRepository;
-use App\Repository\UserRepository;
+use App\Repository\TradeRepository;
 use Ghunti\HighchartsPHP\Highchart;
-use Ghunti\HighchartsPHP\HighchartJsExpr;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Count;
 
-/**
- * @Route("/chart")
- * Class ChartController
- * @package App\Controller
- */
 class ChartController extends AbstractController
 {
     /**
-     * @Route("/job", name="job_chart")
+     * @Route("/chart", name="chart")
      */
-    public function jobChart(JobRepository $jobRepository, CountyRepository $countyRepository)
-    {
-        $jobs = $jobRepository->findAll();
-        $counties = $countyRepository->findAll();
+    public function index(
+        TradeRepository $tradeRepository,
+        JobRepository $jobRepository,
+        CountyRepository $countyRepository
+    ) {
+        $trades = $tradeRepository->findAll();
 
-        $jobData = [];
-
-        foreach ($jobs as $key => $job) {
-            $jobData[$key]['name'] = $job->getName();
-            $jobData[$key]['y'] = count($job->getUsers());
+        foreach ($trades as $key => $trade) {
+            $tradesData[$key]['name'] = $trade->getName();
+            $tradesData[$key]['y'] = count($trade->getUsers());
         }
 
-        $jobChart = new Highchart();
+        $counties = $countyRepository->findAll();
 
-        $jobChart->chart->renderTo = "jobChart";
-        $jobChart->chart->height = 750;
-        $jobChart->chart->backgroundColor = 'rgba(0,55,0,0)';
-        $jobChart->title->text = "Métiers au royaume";
-        $jobChart->title->style->fontSize = '2rem';
+        $tradeChart = new Highchart();
 
-        $jobChart->plotOptions->pie->allowPointSelect = true;
-        $jobChart->plotOptions->pie->cursor = 'pointer';
-        $jobChart->plotOptions->pie->dataLabels->enabled = true;
-        $jobChart->plotOptions->pie->dataLabels->format = '<p style="font-size: 1rem;">{point.name}</b><span style="font-size: 0.8rem;">: {point.percentage:.1f} %</span>';
+        $tradeChart->chart->renderTo = "tradeChart";
+        $tradeChart->chart->height = 750;
+        $tradeChart->chart->backgroundColor = 'rgba(0,55,0,0)';
+        $tradeChart->title->text = "Corps de métiers au royaume";
+        $tradeChart->title->style->fontSize = '2rem';
 
-        $jobChart->tooltip->pointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>';
+        $tradeChart->plotOptions->pie->allowPointSelect = true;
+        $tradeChart->plotOptions->pie->cursor = 'pointer';
+        $tradeChart->plotOptions->pie->dataLabels->enabled = true;
+        $tradeChart->plotOptions->pie->dataLabels->format = '<p style="font-size: 1rem;">{point.name}</b><span style="font-size: 0.8rem;">: {point.percentage:.1f} %</span>';
 
-        $jobChart->series[] = [
+        $tradeChart->tooltip->pointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>';
+
+        $tradeChart->series[] = [
             'type' => 'pie',
             'name' => 'Total',
             'colorByPoint' => true,
-            'data' => $jobData,
+            'data' => $tradesData,
         ];
 
         $countyData = [];
@@ -87,7 +82,7 @@ class ChartController extends AbstractController
         ];
 
         return $this->render('chart/index.html.twig', [
-            'jobChart' => $jobChart->render(),
+            'tradeChart' => $tradeChart->render(),
             'countyChart' => $countyChart->render(),
         ]);
     }

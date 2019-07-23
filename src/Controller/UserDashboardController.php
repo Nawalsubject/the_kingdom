@@ -148,6 +148,8 @@ class UserDashboardController extends AbstractController
             $form->addError(new FormError('Ancien mot de passe incorrect'));
         }
 
+        $user->setImageFile(null);
+
         return $this->render('user/editUserInformation.html.twig', [
             'user' => $user,
             'userInformationForm' => $form->createView(),
