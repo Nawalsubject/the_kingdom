@@ -32,7 +32,7 @@
                             <div class="col-md-9">
                                 <div class="card-body">
                                     <h5 class="card-title text-md-left text-center">
-                                        {{ user.firstname ~ ' ' ~ user.lastname }}
+                                        {{ user.fullName }}
                                         {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
                                     </h5>
                                     <p class="card-text ml-md-5 ml-0"><img
@@ -63,11 +63,11 @@
                                 <div class="col-md-3 profil-picture">
                                     <img src="{% if buddy.imageName %}{{ vich_uploader_asset(buddy, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
                                          class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
-                                         alt="photo de profil de {{ buddy.firstname ~ ' ' ~ buddy.lastname|upper }}">
+                                         alt="photo de profil de {{ buddy.fullName }}">
                                 </div>
                                 <div class="col-md-9">
                                     <div class="card-body">
-                                        <h5 class="card-title text-md-left text-center">{{ buddy.firstname ~ ' ' ~ buddy.lastname }}</h5>
+                                        <h5 class="card-title text-md-left text-center">{{ buddy.fullName }}</h5>
                                         <p class="card-text ml-md-5 ml-0"><img
                                                     src="{{ asset('build/logo_email.png') }}">{{ buddy.email }}</p>
                                         <p class="card-text ml-md-5 ml-0"><img
@@ -159,14 +159,14 @@
                                     <div class="col-md-3 profil-picture">
                                         <img src="{% if godchild.imageName %}{{ vich_uploader_asset(godchild, 'imageFile') }}{% else %}{{ asset('build/image_profile_default.jpg') }}{% endif %}"
                                              class="card-img rounded-circle mx-5 mt-4 my-md-0 mx-md-4"
-                                             alt="photo de profil de {{ godchild.firstname ~ ' ' ~ godchild.lastname|upper }}">
+                                             alt="photo de profil de {{ godchild.fullName }}">
                                     </div>
                                     <div class="col-md-9">
                                         <div class="card-body {% if loop.index < godChildren|length %}godchildNext{% endif %}">
-                                            <h5 class="card-title text-md-left text-center">{{ godchild.firstname ~ ' ' ~ godchild.lastname }}</h5>
+                                            <h5 class="card-title text-md-left text-center">{{ godchild.fullName }}</h5>
                                             <form method="post"
                                                   action="{{ path('godchild_delete', {'id': godchild.id}) }}"
-                                                  onsubmit="return confirm('Voulez-vous supprimer {{ godchild.firstname ~ ' ' ~ godchild.lastname }} de vos filleuls ?');">
+                                                  onsubmit="return confirm('Voulez-vous supprimer {{ godchild.fullName }} de vos filleuls ?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token"
                                                        value="{{ csrf_token('delete' ~ godchild.id) }}">

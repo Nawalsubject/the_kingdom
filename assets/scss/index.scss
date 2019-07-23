@@ -31,25 +31,5 @@
       margin: auto;
       white-space: nowrap;
     }
-
-    .img-left {
-      position: absolute;
-      left: 17%;
-      top: 38%;
-      transform: translate(-50%, -50%) rotate(20deg);
-      @media screen and (min-width: 200px) and (max-width: 900px) {
-        display: none;
-      }
-    }
-
-    .img-right {
-      position: absolute;
-      left: 82%;
-      top: 56%;
-      transform: translate(-50%, -50%);
-      @media screen and (min-width: 200px) and (max-width: 900px) {
-        display: none;
-      }
-    }
   }
 }
