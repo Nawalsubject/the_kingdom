@@ -1,4 +1,4 @@
-.user-listing-section {
+.user-show-section {
   padding-top: 10vh;
 
   .container-fluid {
@@ -65,6 +65,7 @@
       font-size: 1.2em;
       transition: all 1s;
     }
+
     .fab {
       padding: 8px;
       font-size: 1.5em;
@@ -80,25 +81,6 @@
 
     .row {
       padding: 1rem 0 1rem 0;
-    }
-
-    .card-header {
-      font-family: $font-main-title;
-      font-size: 2.3rem;
-
-      a {
-        outline: none;
-      }
-
-      i {
-        margin-top: 10px;
-        color: $primary-text-color;
-        font-size: 1.7rem;
-      }
-
-      .gender {
-        margin: unset;
-      }
     }
   }
 }

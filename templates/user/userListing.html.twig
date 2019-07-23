@@ -50,12 +50,14 @@
                                 <h3 class="card-header align-items-center">
                                     {{ user.fullName|capitalize }}
                                     {{ user.gender.name == 'Homme' ? '<i class="fas fa-mars gender"></i>' : '<i class="fas fa-venus gender"></i>' }}
+                                    {% if isAddGodchildRequest == 'true' %}
                                     <a data-toggle="tooltip"
                                        data-placement="right"
                                        title=" Ajouter en tant que filleul "
                                        href="{{ path('add_godchild', {'id' : user.id}) }}">
                                         <i class="fas fa-hands-helping float-right"></i>
                                     </a>
+                                    {% endif %}
                                 </h3>
                                 <div class="row align-items-center justify-content-center">
 
@@ -81,7 +83,7 @@
                                             <p class="card-text ml-md-5 ml-0"><img
                                                         src="{{ asset('build/logo_knightAt.png') }}">{% if user.knightedAt %}Adoubé en {{ user.knightedAt|date("Y") }}{% else %}Pas encore adoubé{% endif %}
                                             </p>
-                                            <a href="{{ path('show_user', {'id' : user.id}) }}"class="btn float-right">Voir plus</a>
+                                            <a href="{{ path('show_user', {'id' : user.id, 'isAddGodchildRequest': isAddGodchildRequest}) }}"class="btn float-right">Voir plus</a>
                                         </div>
                                     </div>
 
