@@ -65,6 +65,7 @@
       font-size: 1.2em;
       transition: all 1s;
     }
+
     .fab {
       padding: 8px;
       font-size: 1.5em;
@@ -72,7 +73,11 @@
   }
 
   .card-profile {
-    @include card-profile;
+    @include card-profile();
+
+    .btn {
+      @include btn-custom();
+    }
 
     .row {
       padding: 1rem 0 1rem 0;

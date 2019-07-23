@@ -83,6 +83,16 @@ class UserDashboardController extends AbstractController
     }
 
     /**
+     * @Route("{id}/show" , name="show_user")
+     * @param User $user
+     * @return Response
+     */
+    public function show(User $user): Response
+    {
+        return $this->render('user/show.html.twig', ['user' => $user]);
+    }
+
+    /**
      * @Route("/{id}/add-godchild", name="add_godchild")
      * @param User $godchild
      * @return Response
