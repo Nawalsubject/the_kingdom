@@ -9,8 +9,8 @@ easy_admin:
         fields: ['id',
                  { property: 'fullname', label: 'Nom' },
                  { property: 'email', label: 'Email' },
-                 { property: 'phone', label: 'Téléphone' }
-                 { property: 'gender', label: 'Genre' }
+                 { property: 'phone', label: 'Téléphone' },
+                 { property: 'gender', label: 'Genre' },
                  { property: 'county', label: 'Celulle' },
                  { property: 'buddy', label: 'Parrain'},
                  { property: 'godChildren', label: 'Filleul'},
