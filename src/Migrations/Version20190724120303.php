@@ -23,6 +23,7 @@ final class Version20190724120303 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('INSERT INTO `gender` (`name`) VALUES (\'Femme\')');
+        $this->addSql('INSERT INTO `gender` (`name`) VALUES (\'Homme\')');
         $this->addSql('INSERT INTO `county` (`name`) VALUES (\'Orléans\')');
         $this->addSql('INSERT INTO `user` (`email`, `roles`, `password`, `lastname`, `firstname`, `gender_id`, `knighted_at`, `entered_at`, `county_id`) VALUES (\'nawal.zakarya@gmail.com\', \'[\"ROLE_ADMIN\"]\', \'$argon2id$v=19$m=65536,t=6,p=1$KeQctlMlariZL/aRrKGjbA$0NfbplgL0SoToKXW4BZZ2X7SBLw1VJ0vbvujhHzadjY\', \'Zakarya\', \'Nawal\', \'1\', \'2012-01-01\', \'2010-01-01\', 1)');
     }
