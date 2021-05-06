@@ -19,6 +19,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "highcharts": "^7.1.2"
+        "highcharts": "^9.0.0"
     }
 }
